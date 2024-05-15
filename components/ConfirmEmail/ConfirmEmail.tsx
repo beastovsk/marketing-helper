@@ -13,40 +13,38 @@ export const ConfirmEmailModal = () => {
   const router = useRouter();
 
   // const {openConfirmCode, setOpenConfirmCode} = useStore();
-  const {mutate: confirm, isLoading: isConfirmLoading} = useMutation(ConfirmEmail);
+  // const {mutate: confirm, isLoading: isConfirmLoading} = useMutation(ConfirmEmail);
 
   const onConfirmFinish = (value) => {
-    confirm(value, {
-      onSuccess: (data) => {
-        data.json().then((data) => {
-          if (!data?.message) return;
-
-          if (data?.message === 'Почта подтверждена') {
-            setOpenConfirmCode(false);
-          }
-
-          if (data?.token) {
-            router.push('/marketplace');
-            setCookie('token', data?.token);
-          }
-
-          customNotification('info', 'top', 'Информация', data?.message);
-        });
-      }
-    });
+    // confirm(value, {
+    //   onSuccess: (data) => {
+    //     data.json().then((data) => {
+    //       if (!data?.message) return;
+    //       if (data?.message === 'Почта подтверждена') {
+    //         setOpenConfirmCode(false);
+    //       }
+    //       if (data?.token) {
+    //         router.push('/marketplace');
+    //         setCookie('token', data?.token);
+    //       }
+    //       customNotification('info', 'top', 'Информация', data?.message);
+    //     });
+    //   }
+    // });
   };
 
   return (
-    <Modal open={openConfirmCode} onCancel={() => setOpenConfirmCode(false)} footer={false}>
-      <Form layout='vertical' onFinish={onConfirmFinish}>
-        <Form.Item className='mt-5' label='Код подтверждения' name='confirmToken'>
-          <Input className='text-center text-2xl' />
-        </Form.Item>
+    // <Modal open={openConfirmCode} onCancel={() => setOpenConfirmCode(false)} footer={false}>
+    //   <Form layout='vertical' onFinish={onConfirmFinish}>
+    //     <Form.Item className='mt-5' label='Код подтверждения' name='confirmToken'>
+    //       <Input className='text-center text-2xl' />
+    //     </Form.Item>
 
-        <Btn className='mt-2 flex justify-center m-auto' htmlTypeButton='submit' loading={isConfirmLoading}>
-          Отправить
-        </Btn>
-      </Form>
-    </Modal>
+    //     <Btn className='mt-2 flex justify-center m-auto' htmlTypeButton='submit' loading={isConfirmLoading}>
+    //       Отправить
+    //     </Btn>
+    //   </Form>
+    // </Modal>
+    <></>
   );
 };
