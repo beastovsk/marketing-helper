@@ -1,0 +1,72 @@
+.container {
+  background: #1090cb10;
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  @media screen and (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-self: center;
+  height: 100%;
+  flex-grow: 1;
+
+  h2 {
+    color: #4880ff;
+    @include fluid(font-size, 18px, 28px);
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    width: 100%;
+  }
+}
+.description {
+  color: #00000080;
+  @include fluid(font-size, 16px, 18px);
+  @include fluid(margin-top, 20px, 40px);
+}
+.label {
+  color: #4880ff;
+  font-weight: bold;
+}
+
+.title {
+  color: #000000;
+  @include fluid(font-size, 32px, 42px);
+  font-weight: bold;
+}
+
+.radial1 {
+  position: absolute;
+  z-index: -1;
+  right: 10%;
+  top: 10%;
+
+  @media screen and (max-width: $breakpoint-md) {
+    bottom: 0;
+    top: 50%;
+  }
+}
+.radial2 {
+  position: absolute;
+  z-index: -1;
+  left: -2%;
+  top: 0%;
+
+  @media screen and (max-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+.buttons {
+  @include fluid(margin-top, 20px, 40px);
+  display: flex;
+  gap: 20px;
+}

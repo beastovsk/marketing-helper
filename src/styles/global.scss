@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'normalize';
+@import 'lib';
+@import 'mixins';
+
+html {
+  scroll-behavior: smooth;
+  background: #f5f6fa;
+  color: #111;
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
+main {
+  height: 100%;
+}
+input {
+  color: #111 !important;
+  &::placeholder {
+    color: #68676e !important;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.box {
+  padding: 20px;
+  border-radius: 15px;
+  background: #fff;
+  -webkit-box-shadow: 6px 4px 25px -15px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 6px 4px 25px -15px rgba(0, 0, 0, 0.05);
+  box-shadow: 6px 4px 25px -15px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    font-weight: bold;
+  }
+}
+
+//код для скелетонов
+@layer components {
+  .sk-wrapper {
+    @apply bg-white dark:bg-cyan-900;
+  }
+
+  .sk-item {
+    @apply bg-slate-200 dark:bg-slate-500;
+  }
+
+  .container {
+    @apply max-w-[1230px] lg:max-w-[720px] md:max-w-[540px] sm:max-w-none;
+  }
+
+  .mg-block {
+    @apply mb-44 lg:mb-16;
+  }
+}

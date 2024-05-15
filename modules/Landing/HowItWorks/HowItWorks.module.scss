@@ -1,0 +1,37 @@
+.container {
+  @include container;
+  @include fluid(margin-top, 40px, 60px);
+  @include fluid(margin-bottom, 40px, 60px);
+}
+
+.title {
+  @include fluid(font-size, 24px, 32px);
+  @include fluid(margin-bottom, 20px, 40px);
+  font-weight: bold;
+  text-align: center;
+}
+
+.image1 {
+  position: absolute;
+  top: 40%;
+  left: 0%;
+  right: 0;
+}
+.image2 {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  right: 0;
+}
+.image3 {
+  position: absolute;
+  top: 0%;
+  left: 60%;
+  right: 0;
+}
+.image4 {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  right: 0;
+}
