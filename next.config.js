@@ -32,9 +32,5 @@ const nextConfig = {
     ignoreDuringBuilds: true
   }
 };
-const withVideos = require('next-videos');
 
-module.exports = {
-  ...nextConfig,
-  ...withVideos()
-};
+module.exports = nextConfig

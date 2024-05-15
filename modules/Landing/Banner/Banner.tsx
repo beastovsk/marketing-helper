@@ -1,16 +1,18 @@
 import PreloaderImage from '@/components/PreloaderImage/PreloaderImage';
-import bannerImage from '../../../public/image/banner.png';
+import bannerImage from '../../../public/image/banner.webp';
 import radial1 from '../../../public/image/radial1.svg';
 import radial2 from '../../../public/image/radial2.svg';
 
 import s from './Banner.module.scss';
 import Btn from '@/components/UI/Btn/Btn';
+import Image from 'next/image';
+import Loading from '@/app/loading';
 
 export const Banner = () => {
   return (
     <div className={s.container}>
-      <PreloaderImage src={radial1} alt='' quality={100} className={s.radial1} />
-      <PreloaderImage src={radial2} alt='' quality={100} className={s.radial2} />
+      <Image src={radial1} alt='' className={s.radial1} />
+      <Image src={radial2} alt='' className={s.radial2} />
       <div className={`${s.wrapper} container`}>
         <div className={s.content}>
           <h1 className={s.title}>Прогнозируйте и анализируйте свою маркетинговую кампанию </h1>
@@ -25,7 +27,16 @@ export const Banner = () => {
             <Btn primary>Подробнее</Btn>
           </div>
         </div>
-        <PreloaderImage priority src={bannerImage} width={500} alt='' quality={100} className={s.image} />
+        <PreloaderImage
+          preloader={<Loading />}
+          priority
+          src={bannerImage}
+          width={500}
+          height={500}
+          alt=''
+          quality={100}
+          className={s.image}
+        />
       </div>
     </div>
   );

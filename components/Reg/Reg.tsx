@@ -11,7 +11,6 @@ import {useMutation} from 'react-query';
 import s from './Reg.module.scss';
 
 import {animated, useInView} from '@react-spring/web';
-import OTPInput from 'react-otp-input';
 
 interface RegProps {}
 

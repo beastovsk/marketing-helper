@@ -43,7 +43,7 @@ export const Prices = () => {
       <h1 className={s.title}>Цены</h1>
 
       <div className='relative'>
-        <div className='text-center gap-5 flex'>
+        <div className='text-center gap-5 flex overflow-x-auto'>
           {data.map(({title, list, price}) => (
             <div className='box flex flex-col'>
               <h2>{title}</h2>

@@ -1,12 +1,15 @@
 .container {
   background: #1090cb10;
   position: relative;
+  @media screen and (max-width: $breakpoint-md) {
+    padding-bottom: 40px;
+  }
 }
 
 .wrapper {
   display: flex;
   @media screen and (max-width: $breakpoint-md) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 
@@ -69,4 +72,8 @@
   @include fluid(margin-top, 20px, 40px);
   display: flex;
   gap: 20px;
+
+  @media screen and (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
 }

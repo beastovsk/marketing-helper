@@ -13,7 +13,7 @@ export const Feedback = () => {
       <h2 className={s.description}>Заполните форму и мы свяжемся с вами</h2>
 
       <div className='box'>
-        <Form layout='vertical' className='w-1/2 m-auto text-center'>
+        <Form layout='vertical' className='w-1/2 md:w-full m-auto text-center'>
           <Form.Item label='Ваше имя'>
             <Input size='large' />
           </Form.Item>

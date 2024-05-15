@@ -2,6 +2,7 @@ import s from './AboutUs.module.scss';
 import Btn from '@/components/UI/Btn/Btn';
 import image from '../../../public/image/Saly-14.svg';
 import PreloaderImage from '@/components/PreloaderImage/PreloaderImage';
+import {animated, useInView} from '@react-spring/web';
 
 export const AboutUs = () => {
   const data = [
@@ -26,8 +27,8 @@ export const AboutUs = () => {
     <div className={s.container}>
       <h1 className={s.title}>Почему выбирают нас?</h1>
 
-      <div className='flex justify-between'>
-        <div className='flex-grow-[0.5] flex flex-col justify-between'>
+      <div className='flex justify-between md:flex-col'>
+        <div className='flex-grow-[0.5] md:gap-5 flex flex-col justify-between'>
           {data.map(({title, description}, i) => (
             <div className='box'>
               <h2>
@@ -37,7 +38,7 @@ export const AboutUs = () => {
             </div>
           ))}
         </div>
-        <PreloaderImage src={image} alt='' width={300} />
+        <PreloaderImage src={image} alt='' width={300} height={300} className='md:m-auto' />
       </div>
     </div>
   );

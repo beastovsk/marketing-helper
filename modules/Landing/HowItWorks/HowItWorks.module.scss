@@ -13,25 +13,51 @@
 
 .image1 {
   position: absolute;
-  top: 40%;
+  top: 30%;
   left: 0%;
   right: 0;
+
+  @media screen and (max-width: $breakpoint-md) {
+    top: 20%;
+    width: 100px;
+    height: 100px;
+  }
 }
 .image2 {
   position: absolute;
   top: 50%;
   left: 80%;
   right: 0;
+
+  @media screen and (max-width: $breakpoint-md) {
+    top: 50%;
+    width: 100px;
+    height: 100px;
+  }
 }
 .image3 {
   position: absolute;
   top: 0%;
   left: 60%;
   right: 0;
+
+  @media screen and (max-width: $breakpoint-md) {
+    top: -5%;
+    left: 80%;
+    width: 100px;
+    height: 100px;
+  }
 }
 .image4 {
   position: absolute;
-  top: 10%;
+  top: 60%;
   left: 30%;
   right: 0;
+
+  @media screen and (max-width: $breakpoint-md) {
+    left: 10%;
+    top: 70%;
+    width: 100px;
+    height: 100px;
+  }
 }

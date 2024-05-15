@@ -35,7 +35,7 @@ export const Reviews = () => {
                 <h3>{name}</h3>
                 <p className='text-[#4880ff]'>({company})</p>
               </span>
-              <p className='text-[#11111170] w-3/4'>"{message}"</p>
+              <p className='text-[#11111170] w-3/4 md:w-full'>"{message}"</p>
             </div>
           ))}
         </div>

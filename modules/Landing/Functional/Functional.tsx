@@ -25,9 +25,9 @@ export const Functional = () => {
     <div className={s.container}>
       <h1 className={s.title}>Наши функции</h1>
 
-      <div className='flex justify-between'>
-        <PreloaderImage src={image} alt='' width={500} />
-        <div className='flex-grow-[0.5] flex flex-col justify-between'>
+      <div className='flex justify-between md:flex-col-reverse'>
+        <PreloaderImage src={image} alt='' width={500} height={500} />
+        <div className='flex-grow-[0.5] flex flex-col md:gap-5 justify-between'>
           {data.map(({title, description}, i) => (
             <div className='box'>
               <h2>
