@@ -7,6 +7,7 @@ import Head from 'next/head';
 
 import YandexMetrika from 'next-yandex-metrika';
 import Script from 'next/script';
+import {tags} from '@/src/helpers/tags';
 
 const gilroy = localFont({
   src: [
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     template: `%s | MH`
   },
   description: 'Анализ маркетинговой компании с помощью ИИ',
-  keywords: [],
+  keywords: tags,
   robots: {
     index: true,
     follow: true
