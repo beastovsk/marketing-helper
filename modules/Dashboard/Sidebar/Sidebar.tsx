@@ -39,8 +39,8 @@ export const Sidebar: FC<SidebarProps> = () => {
   ];
   return (
     <div className={s.container}>
-      <div className='flex flex-col gap-14 md:gap-2 w-full'>
-        <Link href={'/'} className='w-[200px] px-4 text-2xl md:hidden hover:opacity-70 transition-opacity'>
+      <div className='flex flex-col gap-10 md:gap-2 w-full'>
+        <Link href={'/'} className='w-[200px] px-4 pt-5 text-2xl md:hidden hover:opacity-70 transition-opacity'>
           <Logo />
         </Link>
 

@@ -10,6 +10,7 @@ import {useRouter} from 'next/navigation';
 import {useState} from 'react';
 import {useStore} from '@/src/store';
 import {ResetPassword, SendResetCode} from '@/src/api';
+import {setCookie} from 'cookies-next';
 
 export const ResetPasswordModal = () => {
   const router = useRouter();
@@ -47,7 +48,7 @@ export const ResetPasswordModal = () => {
 
           if (data?.token) {
             router.push('/dashboard');
-            localStorage.setItem('token', data?.token);
+            setCookie('token', data?.token);
           }
 
           customNotification('info', 'top', 'Информация', data?.message);

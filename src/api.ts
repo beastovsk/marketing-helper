@@ -114,3 +114,19 @@ export const ChangePassword = async (args: {password: string; currentPassword: s
     return data.json();
   });
 };
+
+export const GetUser = async () => {
+  return await fetch(`${API_URL}/api/user/getUser`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`,
+      'Access-Control-Allow-Origin': `${API_URL}`,
+      'Access-Control-Allow-Headers': `${API_URL}`
+    },
+    method: 'GET'
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
