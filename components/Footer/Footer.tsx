@@ -49,7 +49,7 @@ export const Footer: FC<FooterProps> = (props) => {
     <div className={s.footer}>
       <div className={s.wrapper}>
         <div className='flex justify-between md:flex-col'>
-          <div className='opacity-80'>
+          <div className='opacity-80 w-[200px]'>
             <Logo />
           </div>
           <div className='flex gap-20 flex-grow justify-center md:justify-start lg:mt-10'>

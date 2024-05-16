@@ -20,7 +20,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   }
 
   return (
-    <ConfigProvider locale={locale} theme={darkTheme}>
+    <ConfigProvider locale={locale} theme={lightTheme}>
       {children}
     </ConfigProvider>
   );

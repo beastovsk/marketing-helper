@@ -12,6 +12,7 @@ import {useMutation} from 'react-query';
 import s from './Auth.module.scss';
 
 import {animated, useInView} from '@react-spring/web';
+import {Logo} from '../UI/Logo/Logo';
 
 interface AuthProps {}
 
@@ -32,16 +33,13 @@ export const Auth: FC<AuthProps> = () => {
     //   onSuccess: (data) => {
     //     data.json().then((data) => {
     //       if (!data?.message) return;
-
     //       if (data?.message === 'Аккаунт не подтвержден. Проверьте вашу почту для подтверждения регистрации') {
     //         setOpenConfirmCode(true);
     //       }
-
     //       if (data?.token) {
     //         router.push('/marketplace');
     //         setCookie('token', data?.token);
     //       }
-
     //       customNotification('info', 'top', 'Информация', data?.message);
     //     });
     //   }
@@ -52,11 +50,8 @@ export const Auth: FC<AuthProps> = () => {
     <animated.div ref={ref} style={springs} className={s.container}>
       <h1 className='text-5xl font-semibold'>
         <Tooltip title='Перейти на главную страницу'>
-          <Link href={'/'} className='hover:opacity-70 transition-opacity'>
-            Webi
-          </Link>
-        </Tooltip>{' '}
-        <span className='text-primary-500'>Marketplace</span>
+          <Logo />
+        </Tooltip>
       </h1>
 
       <h2 className='text-3xl font-medium mt-20'>Авторизация</h2>
@@ -68,20 +63,20 @@ export const Auth: FC<AuthProps> = () => {
         <Form.Item name='password' rules={[{required: true, min: 4, message: 'Введите ваш пароль'}]}>
           <Input.Password size='large' placeholder='Пароль' />
         </Form.Item>
-        <p className='text-start text-white text-sm'>
+        <p className='text-start text-black text-sm'>
           Нет аккаунта?{' '}
-          <Link href={'/marketplace/reg'} className='text-primary-500'>
+          <Link href={'/reg'} className='text-primary-500'>
             Зарегистрироваться
           </Link>
         </p>{' '}
         <p className='cursor-pointer text-start mt-3 text-white text-sm'>
-          {/* <span className='text-primary-500' onClick={() => setOpenResetPassword(true)}>
+          <span className='text-primary-500' onClick={() => {}}>
             Восстановить пароль
-          </span> */}
+          </span>
         </p>
-        {/* <Btn loading={isLoading} htmlTypeButton='submit' className='mt-10'>
+        <Btn loading={false} htmlTypeButton='submit' className='mt-10'>
           Войти
-        </Btn> */}
+        </Btn>
       </Form>
     </animated.div>
   );

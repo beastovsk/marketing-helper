@@ -11,6 +11,7 @@ import {useMutation} from 'react-query';
 import s from './Reg.module.scss';
 
 import {animated, useInView} from '@react-spring/web';
+import {Logo} from '../UI/Logo/Logo';
 
 interface RegProps {}
 
@@ -46,11 +47,8 @@ export const Reg: FC<RegProps> = () => {
     <animated.div ref={ref} style={springs} className={s.container}>
       <h2 className='text-5xl font-semibold'>
         <Tooltip title='Перейти на главную страницу'>
-          <Link href={'/'} className='hover:opacity-70 transition-opacity'>
-            Webi
-          </Link>
-        </Tooltip>{' '}
-        <span className='text-primary-500'>Marketplace</span>
+          <Logo />
+        </Tooltip>
       </h2>
       <h2 className='text-3xl font-medium mt-20'>Регистрация</h2>
       <Form className='my-10' onFinish={onFinish}>
@@ -60,15 +58,15 @@ export const Reg: FC<RegProps> = () => {
         <Form.Item name='password' rules={[{required: true, min: 4, message: 'Введите пароль более 4 символов'}]}>
           <Input.Password size='large' placeholder='Пароль' />
         </Form.Item>
-        <p className='text-start text-white text-sm'>
+        <p className='text-start text-black text-sm'>
           Есть аккаунт?{' '}
-          <Link href={'/marketplace/auth'} className='text-primary-500'>
+          <Link href={'/auth'} className='text-primary-500'>
             Авторизироваться
           </Link>
         </p>
-        {/* <Btn loading={isLoading} htmlTypeButton='submit' className='mt-10'>
+        <Btn loading={false} htmlTypeButton='submit' className='mt-10'>
           Создать аккаунт
-        </Btn> */}
+        </Btn>
       </Form>
     </animated.div>
   );

@@ -15,12 +15,14 @@ export const Header: FC<HeaderProps> = (props) => {
 
   const content = (
     <div className={s.content}>
-        <Btn primary>Поддержка</Btn>
+      <Btn primary>Поддержка</Btn>
     </div>
   );
   return (
     <div className={s.header}>
-      <Logo />
+      <div className='w-[200px]'>
+        <Logo />
+      </div>
       <div className='hidden md:flex' onClick={() => setOpen(true)}>
         <MenuOutlined className='text-xl opacity-80' />
       </div>
