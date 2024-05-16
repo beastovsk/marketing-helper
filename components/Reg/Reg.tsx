@@ -7,17 +7,18 @@ import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import React, {FC} from 'react';
 import {useMutation} from 'react-query';
-// import {Register, ConfirmEmail} from '../../modules/Marketplace/api';
 import s from './Reg.module.scss';
 
 import {animated, useInView} from '@react-spring/web';
 import {Logo} from '../UI/Logo/Logo';
+import {RegRequest} from '@/src/api';
+import {useStore} from '@/src/store';
 
 interface RegProps {}
 
 export const Reg: FC<RegProps> = () => {
-  // const {mutate, isLoading} = useMutation(Register);
-
+  const {mutate, isLoading} = useMutation(RegRequest);
+  const {setOpenConfirmCode} = useStore();
   const [ref, springs] = useInView(
     () => ({
       from: {opacity: 0.7, scale: 0.95},
@@ -27,20 +28,20 @@ export const Reg: FC<RegProps> = () => {
   );
 
   const onFinish = (value) => {
-    // mutate(value, {
-    //   onSuccess: (data) => {
-    //     data.json().then((data) => {
-    //       if (!data?.message) return;
-    //       if (
-    //         data?.message === 'Подтвердите почту' ||
-    //         data?.message === 'Подтверждение регистрации отправлено на вашу почту'
-    //       ) {
-    //         setOpenConfirmCode(true);
-    //       }
-    //       customNotification('info', 'top', 'Информация', data?.message);
-    //     });
-    //   }
-    // });
+    mutate(value, {
+      onSuccess: (data) => {
+        localStorage.setItem('email', value.email);
+
+        if (!data?.message) return;
+        if (
+          data?.message === 'Подтвердите почту' ||
+          data?.message === 'Подтверждение регистрации отправлено на вашу почту'
+        ) {
+          setOpenConfirmCode(true);
+        }
+        customNotification('info', 'top', 'Информация', data?.message);
+      }
+    });
   };
 
   return (
@@ -64,7 +65,7 @@ export const Reg: FC<RegProps> = () => {
             Авторизироваться
           </Link>
         </p>
-        <Btn loading={false} htmlTypeButton='submit' className='mt-10'>
+        <Btn loading={isLoading} htmlTypeButton='submit' className='mt-10'>
           Создать аккаунт
         </Btn>
       </Form>

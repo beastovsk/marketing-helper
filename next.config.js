@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const dotenv = require('dotenv');
 
 const nextConfig = {
   compiler: {
@@ -32,5 +33,6 @@ const nextConfig = {
     ignoreDuringBuilds: true
   }
 };
+dotenv.config();
 
-module.exports = nextConfig
+module.exports = nextConfig;

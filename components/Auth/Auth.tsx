@@ -13,11 +13,14 @@ import s from './Auth.module.scss';
 
 import {animated, useInView} from '@react-spring/web';
 import {Logo} from '../UI/Logo/Logo';
+import {LoginRequest} from '@/src/api';
+import {useStore} from '../../src/store';
 
 interface AuthProps {}
 
 export const Auth: FC<AuthProps> = () => {
-  // const {mutate, isLoading} = useMutation(Login);
+  const {mutate, isLoading} = useMutation(LoginRequest);
+  const {setOpenConfirmCode, setOpenResetPassword} = useStore();
   const [ref, springs] = useInView(
     () => ({
       from: {opacity: 0.7, scale: 0.95},
@@ -29,21 +32,20 @@ export const Auth: FC<AuthProps> = () => {
   const router = useRouter();
 
   const onFinish = async (value) => {
-    // mutate(value, {
-    //   onSuccess: (data) => {
-    //     data.json().then((data) => {
-    //       if (!data?.message) return;
-    //       if (data?.message === 'Аккаунт не подтвержден. Проверьте вашу почту для подтверждения регистрации') {
-    //         setOpenConfirmCode(true);
-    //       }
-    //       if (data?.token) {
-    //         router.push('/marketplace');
-    //         setCookie('token', data?.token);
-    //       }
-    //       customNotification('info', 'top', 'Информация', data?.message);
-    //     });
-    //   }
-    // });
+    mutate(value, {
+      onSuccess: (data) => {
+        localStorage.setItem('email', value.email);
+        if (!data?.message) return;
+        if (data?.message === 'Аккаунт не подтвержден. Проверьте вашу почту для подтверждения регистрации') {
+          setOpenConfirmCode(true);
+        }
+        if (data?.token) {
+          router.push('/dashboard');
+          setCookie('token', data?.token);
+        }
+        customNotification('info', 'top', 'Информация', data?.message);
+      }
+    });
   };
 
   return (
@@ -68,13 +70,13 @@ export const Auth: FC<AuthProps> = () => {
           <Link href={'/reg'} className='text-primary-500'>
             Зарегистрироваться
           </Link>
-        </p>{' '}
+        </p>
         <p className='cursor-pointer text-start mt-3 text-white text-sm'>
-          <span className='text-primary-500' onClick={() => {}}>
+          <span className='text-primary-500' onClick={() => setOpenResetPassword(true)}>
             Восстановить пароль
           </span>
         </p>
-        <Btn loading={false} htmlTypeButton='submit' className='mt-10'>
+        <Btn loading={isLoading} htmlTypeButton='submit' className='mt-10'>
           Войти
         </Btn>
       </Form>

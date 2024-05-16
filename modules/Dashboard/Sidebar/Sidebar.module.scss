@@ -1,0 +1,30 @@
+.container {
+  width: 300px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 20px;
+  z-index: 30;
+
+  position: fixed;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    border-radius: 10px;
+    height: 80px;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+    left: 0;
+    bottom: 10px;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    // width: 100%;
+  }
+}

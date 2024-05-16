@@ -26,9 +26,9 @@ export const Header: FC<HeaderProps> = (props) => {
       <div className='w-1/3 flex flex-col items-center'>
         <span className='text-lg font-bold'>Сервис в разработке</span>
         <span className='text-center'>
-          Если вы увидели в поисковой системе этот сайт, опишитесь пожалуйста в{' '}
+          Если вы увидели в поисковой системе этот сайт, отпишитесь пожалуйста в{' '}
           <Link href='https://t.me/beastovsk' className='text-primary-500 hover:opacity-70'>
-            телеграм
+            телеграмм
           </Link>{' '}
           и мы дадим вам скидку при запуске
         </span>
