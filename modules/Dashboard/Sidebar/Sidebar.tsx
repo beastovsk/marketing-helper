@@ -53,8 +53,10 @@ export const Sidebar: FC<SidebarProps> = () => {
               } flex items-center gap-3 w-full hover:text-primary-500 p-5 rounded-lg transition-opacity `}
               key={href}
             >
-              <span>{icon}</span>
-              <p className='flex lg:hidden'>{label}</p>
+              <a>
+                <span>{icon}</span>
+                <p className='flex lg:hidden'>{label}</p>
+              </a>
             </Link>
           ))}
         </div>
