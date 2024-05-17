@@ -2,9 +2,8 @@
 
 import Btn from '@/components/UI/Btn/Btn';
 import {customNotification} from '@/src/helpers/customNotification';
-import {Breadcrumb, Button, Form, Input, Modal, Space, Tooltip} from 'antd';
+import {Form, Input, Tooltip} from 'antd';
 import Link from 'next/link';
-import {useRouter} from 'next/navigation';
 import React, {FC} from 'react';
 import {useMutation} from 'react-query';
 import s from './Reg.module.scss';
@@ -13,6 +12,7 @@ import {animated, useInView} from '@react-spring/web';
 import {Logo} from '../UI/Logo/Logo';
 import {RegRequest} from '@/src/api';
 import {useStore} from '@/src/store';
+import {setCookie} from 'cookies-next';
 
 interface RegProps {}
 

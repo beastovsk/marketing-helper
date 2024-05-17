@@ -32,7 +32,7 @@ export const Main = () => {
 
       <div className='grid grid-cols-2 gap-4 md:grid-cols-1 mt-5'>
         {cardsList.map(({description, label, review}) => (
-          <div className='box flex-grow'>
+          <div className='box flex-grow' key={label}>
             <h3 className='text-xl'>{label}</h3>
             <h4 className='text-lg mt-3'>{description}</h4>
             <p className='mt-5'>{review}</p>

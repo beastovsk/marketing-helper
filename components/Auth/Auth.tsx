@@ -2,13 +2,12 @@
 
 import Btn from '@/components/UI/Btn/Btn';
 import {customNotification} from '@/src/helpers/customNotification';
-import {Button, Form, Input, Modal, Tooltip} from 'antd';
+import {Form, Input, Tooltip} from 'antd';
 import {setCookie} from 'cookies-next';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {useMutation} from 'react-query';
-// import {ConfirmEmail, Login} from '../../modules/Marketplace/api';
 import s from './Auth.module.scss';
 
 import {animated, useInView} from '@react-spring/web';

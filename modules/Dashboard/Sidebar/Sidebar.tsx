@@ -1,9 +1,7 @@
 'use client';
 
-import Btn from '@/components/UI/Btn/Btn';
-import {AppstoreOutlined, DesktopOutlined, ImportOutlined, SettingOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Form, Input} from 'antd';
-import {deleteCookie, getCookie} from 'cookies-next';
+import {HomeOutlined, ImportOutlined, SettingOutlined, TeamOutlined, WalletOutlined} from '@ant-design/icons';
+import {deleteCookie} from 'cookies-next';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import React, {FC} from 'react';
@@ -18,23 +16,23 @@ export const Sidebar: FC<SidebarProps> = () => {
   const navigationMenu = [
     {
       label: 'Главная',
-      icon: <AppstoreOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
-      href: '/dashboard/'
+      icon: <HomeOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
+      href: '/dashboard'
     },
     {
       label: 'Бюджет',
-      icon: <DesktopOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
-      href: '/dashboard/budjet/'
+      icon: <WalletOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
+      href: '/dashboard/budjet'
     },
     {
       label: 'Рекомендации',
-      icon: <UserOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
-      href: '/dashboard/recommendations/'
+      icon: <TeamOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
+      href: '/dashboard/recommendations'
     },
     {
       label: 'Настройки',
       icon: <SettingOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
-      href: '/dashboard/settings/'
+      href: '/dashboard/settings'
     }
   ];
   return (
@@ -49,14 +47,12 @@ export const Sidebar: FC<SidebarProps> = () => {
             <Link
               href={href}
               className={`${
-                pathname == href && 'bg-primary-500 text-white hover:hover:text-white'
+                pathname.slice(0, -1) === href && 'bg-primary-500 text-white hover:hover:text-white'
               } flex items-center gap-3 w-full hover:text-primary-500 p-5 rounded-lg transition-opacity `}
               key={href}
             >
-              <a>
-                <span>{icon}</span>
-                <p className='flex lg:hidden'>{label}</p>
-              </a>
+              <span>{icon}</span>
+              <p className='flex lg:hidden'>{label}</p>
             </Link>
           ))}
         </div>
