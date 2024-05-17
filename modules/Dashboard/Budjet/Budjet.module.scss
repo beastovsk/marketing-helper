@@ -1,0 +1,4 @@
+.title {
+  @include fluid(font-size, 24px, 28px);
+  font-weight: bold;
+}

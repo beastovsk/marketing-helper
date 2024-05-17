@@ -44,6 +44,10 @@ input {
   h2 {
     font-weight: bold;
   }
+
+  @media screen and (max-width: $breakpoint-lg) {
+    overflow-x: auto;
+  }
 }
 
 //код для скелетонов
@@ -63,4 +67,9 @@ input {
   .mg-block {
     @apply mb-44 lg:mb-16;
   }
+}
+
+th {
+  font-weight: normal;
+  text-align: left;
 }
