@@ -130,3 +130,35 @@ export const GetUser = async () => {
     return data.json();
   });
 };
+
+export const ChangeCampaign = async (args) => {
+  return await fetch(`${API_URL}/api/user/updateCampaign`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`,
+      'Access-Control-Allow-Origin': `${API_URL}`,
+      'Access-Control-Allow-Headers': `${API_URL}`
+    },
+    method: 'POST',
+    body: JSON.stringify(args)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+
+export const StatisticCampaign = async () => {
+  return await fetch(`${API_URL}/api/page/getStatistic`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`,
+      'Access-Control-Allow-Origin': `${API_URL}`,
+      'Access-Control-Allow-Headers': `${API_URL}`
+    }
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};

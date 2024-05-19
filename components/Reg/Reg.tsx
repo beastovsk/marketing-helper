@@ -12,7 +12,6 @@ import {animated, useInView} from '@react-spring/web';
 import {Logo} from '../UI/Logo/Logo';
 import {RegRequest} from '@/src/api';
 import {useStore} from '@/src/store';
-import {setCookie} from 'cookies-next';
 
 interface RegProps {}
 

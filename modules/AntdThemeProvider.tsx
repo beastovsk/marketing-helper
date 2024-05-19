@@ -2,14 +2,52 @@
 import React, {useEffect, useState} from 'react';
 import {ConfigProvider} from 'antd';
 import locale from 'antd/locale/ru_RU';
-import {darkTheme, lightTheme} from '@/src/helpers/theme';
+import {lightTheme} from '@/src/helpers/theme';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
+import {useQuery} from 'react-query';
+import {GetUser} from '@/src/api';
+import {useRouter} from 'next/navigation';
+import {deleteCookie} from 'cookies-next';
+import {ChangeCampaignModal} from '@/components/ChangeCampaign/ChangeCampaign';
+import {useStore} from '@/src/store';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import localeData from 'dayjs/plugin/localeData';
+import weekday from 'dayjs/plugin/weekday';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
+import weekYear from 'dayjs/plugin/weekYear';
 
+dayjs.extend(customParseFormat);
+dayjs.extend(advancedFormat);
+dayjs.extend(weekday);
+dayjs.extend(localeData);
+dayjs.extend(weekOfYear);
+dayjs.extend(weekYear);
 dayjs.locale('ru');
 
 function AntdThemeProvider({children}: {children: React.ReactNode}) {
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const {setCampaign, setOpenCampaign} = useStore();
+  const {data, isSuccess} = useQuery('data', () => GetUser());
+
+  useEffect(() => {
+    if (!isSuccess) return;
+    if (!data?.user) {
+      router.push('/auth');
+      localStorage.removeItem('email');
+      deleteCookie('token');
+      return null;
+    }
+
+    if (data?.user.campaign === null) {
+      setOpenCampaign(true);
+    }
+
+    setCampaign(data?.user.campaign);
+    localStorage.setItem('email', data?.user.email);
+  }, [isSuccess, data]);
 
   useEffect(() => {
     setMounted(true);
@@ -22,6 +60,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   return (
     <ConfigProvider locale={locale} theme={lightTheme}>
       {children}
+      <ChangeCampaignModal />
     </ConfigProvider>
   );
 }

@@ -19,6 +19,7 @@
         "antd": "^5.1.6",
         "chart.js": "^4.4.2",
         "cookies-next": "^2.1.1",
+        "dayjs": "^1.11.11",
         "dotenv": "^16.4.5",
         "eslint": "^8.22.0",
         "eslint-config-next": "^13.3.0",

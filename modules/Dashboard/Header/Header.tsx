@@ -1,26 +1,23 @@
 'use client';
 
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import s from './Header.module.scss';
-import {useQuery} from 'react-query';
-import {GetUser} from '@/src/api';
-
 interface HeaderProps {}
 
 export const Header: FC<HeaderProps> = () => {
-  const {data, isSuccess} = useQuery('data', () => GetUser());
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
-    if (!isSuccess) return;
+    if (!localStorage) return;
 
-    localStorage.setItem('email', data?.user.email);
-  }, [isSuccess, data]);
+    setEmail(localStorage.getItem('email'));
+  }, []);
 
   return (
     <div className={s.header}>
-      <div>{isSuccess ? data?.user.email : ''}</div>
+      <div>{email}</div>
       <div className='w-[50px] h-[50px] bg-primary-500 rounded-full text-white flex items-center justify-center text-xl'>
-        {isSuccess ? data?.user.email[0].toUpperCase() : ''}
+        {email ? email[0].toUpperCase() : ''}
       </div>
     </div>
   );
