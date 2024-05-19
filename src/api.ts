@@ -1,6 +1,6 @@
 import {getCookie} from 'cookies-next';
 
-const API_URL = 'https://marketing-helper-server.onrender.com/';
+const API_URL = 'https://marketing-helper-server.onrender.com';
 export const LoginRequest = async (data) => {
   return await fetch(`${API_URL}/api/auth/login`, {
     headers: {
