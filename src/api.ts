@@ -1,6 +1,7 @@
 import {getCookie} from 'cookies-next';
 
 const API_URL = 'http://localhost:3005';
+
 export const LoginRequest = async (data) => {
   return await fetch(`${API_URL}/api/auth/login`, {
     headers: {
@@ -157,6 +158,35 @@ export const StatisticCampaign = async () => {
       'Access-Control-Allow-Origin': `${API_URL}`,
       'Access-Control-Allow-Headers': `${API_URL}`
     }
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+
+export const UpdateSubscription = async (data) => {
+  return await fetch(`${API_URL}/api/user/updateSubscription`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const confirmSubscription = async (data) => {
+  return await fetch(`${API_URL}/api/user/confirmSubscription`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
   }).then((data) => {
     if (!data.ok) return;
     return data.json();

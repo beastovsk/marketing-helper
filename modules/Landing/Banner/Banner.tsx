@@ -23,7 +23,7 @@ export const Banner = () => {
             Мы поможем вам принимать обоснованные решения и достигать выдающихся результатов.
           </span>
           <div className={s.buttons}>
-            <Btn>Попробовать бесплатно</Btn>
+            <Btn>Попробовать</Btn>
             <Btn primary>Подробнее</Btn>
           </div>
         </div>

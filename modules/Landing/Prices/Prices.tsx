@@ -6,35 +6,25 @@ import reviewImage from '../../../public/image/review.jpg';
 export const Prices = () => {
   const data = [
     {
-      title: 'Подписка на месяц',
+      title: 'Демо',
+      list: ['Прогноз метрик', 'Анализ расходов и прогноз доходов', 'Прогноз первого клиента и первой покупки'],
+      price: '300'
+    },
+    {
+      title: 'Базовый',
       list: [
+        'Функционал из демо',
         'Прогноз конверсии',
         'Рекомендации по улучшению ROI, CAC',
         'Оптимизация и перераспределение бюджета',
         'Предложения и рекомендации в долгосрочном планировании'
       ],
-      price: '1990'
+      price: '1700'
     },
     {
-      title: 'Подписка на 3 месяца',
-      list: [
-        'Прогноз конверсии',
-        'Рекомендации по улучшению ROI, CAC',
-        'Оптимизация и перераспределение бюджета',
-        'Предложения и рекомендации в долгосрочном планировании'
-      ],
-      price: '5500'
-    },
-    {
-      title: 'Подписка на год',
-      list: [
-        'Прогноз конверсии',
-        'Рекомендации по улучшению ROI, CAC',
-        'Оптимизация и перераспределение бюджета',
-        'Предложения и рекомендации в долгосрочном планировании',
-        'Бета-доступ к новым фичам'
-      ],
-      price: '19900'
+      title: 'Продвинутый',
+      list: ['Функционал из базового тарифа', 'Личный AI ассистент', 'Бета-доступ к новым фичам'],
+      price: '3000'
     }
   ];
 
@@ -43,9 +33,11 @@ export const Prices = () => {
       <h1 className={s.title}>Цены</h1>
 
       <div className='relative'>
-        <div className='text-center gap-5 flex md:flex-wrap'>
+        <div className='text-center gap-5 grid grid-cols-3 md:grid-cols-1'>
           {data.map(({title, list, price}) => (
-            <div className='box flex flex-col'>
+            <div
+              className={`box flex flex-col ${title === 'Базовый' ? 'border-2 border-primary-500 rounded-2xl' : ''}`}
+            >
               <h2>{title}</h2>
               <div className='my-5'>
                 {list.map((item, i) => (

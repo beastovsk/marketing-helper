@@ -30,7 +30,7 @@ export const AboutUs = () => {
       <div className='flex justify-between md:flex-col'>
         <div className='flex-grow-[0.5] md:gap-5 flex flex-col justify-between'>
           {data.map(({title, description}, i) => (
-            <div className='box'>
+            <div className='box' key={i}>
               <h2>
                 {i + 1}. {title}
               </h2>

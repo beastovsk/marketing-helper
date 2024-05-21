@@ -53,12 +53,12 @@ export const Footer: FC<FooterProps> = (props) => {
             <Logo />
           </div>
           <div className='flex gap-20 flex-grow justify-center md:justify-start lg:mt-10'>
-            {linksList.map(({links, title}) => (
-              <div>
+            {linksList.map(({links, title}, i) => (
+              <div key={i}>
                 <h2 className='text-lg mb-3'>{title}</h2>
                 <div className='flex flex-col gap-1 text-gray-400'>
-                  {links.map(({href, label}) => (
-                    <Link href={href} className='hover:opacity-70 transition-opacity'>
+                  {links.map(({href, label}, i) => (
+                    <Link key={i} href={href} className='hover:opacity-70 transition-opacity'>
                       {label}
                     </Link>
                   ))}

@@ -1,3 +1,5 @@
+import {ChangeCampaignModal} from '@/components/ChangeCampaign/ChangeCampaign';
+import {ChangeSubscriptionModal} from '@/components/ChangeSubscription/ChangeSubscription';
 import {Header} from '@/modules/Dashboard/Header/Header';
 import {Sidebar} from '@/modules/Dashboard/Sidebar/Sidebar';
 import '@/src/styles/global.scss';
@@ -14,8 +16,9 @@ export default async function RootLayout({data, children}: {data: any; children:
         </div>
         <div className='flex-grow min-h-[90vh] flex-shrink-0 basis-auto container flex flex-col gap-20 md:gap-10 md:pb-[100px] p-[30px] md:pt-[10px] md:px-[10px] '>
           {children}
+          <ChangeSubscriptionModal />
+          <ChangeCampaignModal />
         </div>
-        <div className='flex-grow-0 flex-shrink-0 basis-auto'>{/* <Footer /> */}</div>
       </div>
     </div>
   );

@@ -38,7 +38,7 @@ export const HowItWorks = () => {
         <PreloaderImage src={doodle4} alt='' width={200} height={200} quality={100} className={s.image4} />
         <div className='text-center gap-5 z-10 flex flex-col'>
           {data.map(({title, description}, i) => (
-            <div className={`box w-1/2 md:w-full ${i === 1 || i === 3 ? 'ml-auto' : ''}`}>
+            <div className={`box w-1/2 md:w-full ${i === 1 || i === 3 ? 'ml-auto' : ''}`} key={i}>
               <h2>{title}</h2>
               <p>{description}</p>
             </div>

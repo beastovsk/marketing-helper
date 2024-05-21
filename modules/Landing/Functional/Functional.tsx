@@ -29,7 +29,7 @@ export const Functional = () => {
         <PreloaderImage src={image} alt='' width={500} height={500} />
         <div className='flex-grow-[0.5] flex flex-col md:gap-5 justify-between'>
           {data.map(({title, description}, i) => (
-            <div className='box'>
+            <div className='box' key={i}>
               <h2>
                 {i + 1}. {title}
               </h2>

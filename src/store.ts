@@ -5,13 +5,17 @@ interface IStore {
   openResetPassword: boolean;
   openChangeEmail: boolean;
   openCampaign: boolean;
+  openSubscription: boolean;
   campaign: null | Record<string, string>;
+  subscriptionInfo: null | Record<string, string>;
 
   setOpenConfirmCode: (param: boolean) => void;
   setOpenResetPassword: (param: boolean) => void;
   setOpenChangeEmail: (param: boolean) => void;
   setOpenCampaign: (param: boolean) => void;
+  setOpenSubscription: (param: boolean) => void;
   setCampaign: (param: Record<string, string>) => void;
+  setSubscriptionInfo: (param: Record<string, string>) => void;
 }
 
 export const useStore = create<IStore>()((set) => ({
@@ -28,5 +32,11 @@ export const useStore = create<IStore>()((set) => ({
   setOpenCampaign: (value) => set(() => ({openCampaign: value})),
 
   campaign: null,
-  setCampaign: (value) => set(() => ({campaign: value}))
+  setCampaign: (value) => set(() => ({campaign: value})),
+
+  openSubscription: false,
+  setOpenSubscription: (value) => set(() => ({openSubscription: value})),
+
+  subscriptionInfo: null,
+  setSubscriptionInfo: (value) => set(() => ({subscriptionInfo: value}))
 }));

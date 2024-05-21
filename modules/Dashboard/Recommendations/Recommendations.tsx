@@ -16,7 +16,7 @@ export const Recommendations = () => {
       <h1 className={s.title}>Прогноз</h1>
       <div className='grid grid-cols-2 md:grid-cols-1 gap-4 mt-5'>
         {list.map(({date, title}) => (
-          <div className='box'>
+          <div className='box' key={title}>
             <h3 className='text-xl mb-5 font-normal'>{title}</h3>
             <h4 className='text-xl bold mb-3'>{date}</h4>
           </div>

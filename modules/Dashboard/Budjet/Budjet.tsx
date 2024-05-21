@@ -31,7 +31,7 @@ export const Budjet = () => {
       <h1 className={s.title}>Бюджет</h1>
       <div className='grid grid-cols-2 md:grid-cols-1 gap-4 mt-5'>
         {list.map(({amount, review, range, title}) => (
-          <div className='box'>
+          <div className='box' key={title}>
             <h3 className='text-xl mb-5 font-normal'>{title}</h3>
             <h4 className='text-xl bold mb-3'>{amount}</h4>
             <p className='mb-3'>{range}</p>
@@ -52,8 +52,8 @@ export const Budjet = () => {
             </tr>
           </thead>
           <tbody>
-            {optimizationList.map(({budjet, channel, conversion, review}) => (
-              <tr className='md:text-sm'>
+            {optimizationList.map(({budjet, channel, conversion, review}, i) => (
+              <tr className='md:text-sm' key={i}>
                 <th>{channel}</th>
                 <th>{budjet}</th>
                 <th>{conversion}</th>

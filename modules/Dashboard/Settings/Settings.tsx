@@ -8,7 +8,7 @@ import {ResetPasswordModal} from '@/components/ResetPassword/ResetPassword';
 import dayjs from 'dayjs';
 
 export const Settings = () => {
-  const {setOpenChangeEmail, setOpenResetPassword, setOpenCampaign, campaign} = useStore();
+  const {setOpenChangeEmail, setOpenResetPassword, setOpenCampaign, setOpenSubscription, campaign} = useStore();
 
   return (
     <div>
@@ -45,7 +45,9 @@ export const Settings = () => {
         <h3 className={s.subtitle}>
           Изменить пароль <EditButton onClick={() => setOpenResetPassword(true)} />
         </h3>
-        <h3 className={s.subtitle}>Подписка: Базовая</h3>
+        <h3 className={s.subtitle}>
+          Подписка: Базовая <EditButton onClick={() => setOpenSubscription(true)} />
+        </h3>
       </div>
 
       <ChangeEmailModal />
