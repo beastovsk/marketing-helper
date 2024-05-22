@@ -21,7 +21,7 @@ export const ChangeCampaignModal = () => {
   const {campaign, setCampaign, subscriptionInfo} = useStore();
   const {mutate, isLoading, isSuccess} = useMutation(ChangeCampaign);
   const [initialValues, setInitialValues] = useState(null);
-  const camebackUrl = campaign === null ? '/' : '/dashboard/settings';
+  const camebackUrl = campaign === null || !subscriptionInfo?.subsciptionPlan ? '/' : '/dashboard/settings';
   const onFinish = (value) => {
     mutate(value, {
       onSuccess: (data) => {

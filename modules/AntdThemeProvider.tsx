@@ -35,7 +35,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const paymentStatus = searchParams.get('paymentStatus');
   const [mounted, setMounted] = useState(false);
   const {setCampaign, setSubscriptionInfo} = useStore();
-  const {data, isSuccess} = useQuery('data', () => GetUser());
+  const {data, isSuccess, refetch} = useQuery('data', () => GetUser());
   const {mutate: confirmPayment, isLoading} = useMutation(confirmSubscription);
 
   useEffect(() => {
@@ -86,6 +86,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
         }
       );
     }
+    refetch();
   }, []);
 
   if (!mounted || isLoading || !isSuccess) {
