@@ -6,9 +6,23 @@ import {EditButton} from '@/components/UI/EditButton/EditButton';
 import {ChangeEmailModal} from '@/components/ChangeEmail/ChangeEmail';
 import {ResetPasswordModal} from '@/components/ResetPassword/ResetPassword';
 import dayjs from 'dayjs';
+import Link from 'next/link';
 
 export const Settings = () => {
-  const {setOpenChangeEmail, setOpenResetPassword, setOpenCampaign, setOpenSubscription, campaign} = useStore();
+  const {setOpenChangeEmail, setOpenResetPassword, subscriptionInfo, campaign} = useStore();
+
+  const getTitleOfSubscription = () => {
+    const plan = subscriptionInfo?.subscriptionPlan;
+
+    switch (plan) {
+      case 'demo':
+        return 'Демо';
+      case 'basic':
+        return 'Базовый';
+      case 'advanced':
+        return 'Продвинутый';
+    }
+  };
 
   return (
     <div>
@@ -16,7 +30,10 @@ export const Settings = () => {
 
       <div className='box mt-5'>
         <h3 className={s.subtitle}>
-          Данные кампании <EditButton onClick={() => setOpenCampaign(true)} />
+          Данные кампании{' '}
+          <Link href='/campaign'>
+            <EditButton />
+          </Link>
         </h3>
         <div className='flex flex-col text-sm p-3 border-b'>
           <span>Ниша: {campaign?.niche}</span>
@@ -46,7 +63,10 @@ export const Settings = () => {
           Изменить пароль <EditButton onClick={() => setOpenResetPassword(true)} />
         </h3>
         <h3 className={s.subtitle}>
-          Подписка: Базовая <EditButton onClick={() => setOpenSubscription(true)} />
+          Подписка: {getTitleOfSubscription()}{' '}
+          <Link href='/subscription'>
+            <EditButton />
+          </Link>
         </h3>
       </div>
 

@@ -11,11 +11,13 @@ import {useStore} from '@/src/store';
 import {ChangeCampaign, UpdateSubscription} from '@/src/api';
 import {useEffect, useState} from 'react';
 import {useRouter} from 'next/navigation';
+import Link from 'next/link';
 
 export const ChangeSubscriptionModal = () => {
-  const navigate = useRouter();
-  const {openSubscription, setOpenSubscription, subscriptionInfo} = useStore();
+  const router = useRouter();
+  const {subscriptionInfo} = useStore();
   const {mutate, isLoading} = useMutation(UpdateSubscription);
+  const backUrl = subscriptionInfo?.subscriptionPlan === null ? '/campaign' : '/dashboard/settings';
 
   const onFinish = (value) => {
     mutate(value, {
@@ -27,18 +29,11 @@ export const ChangeSubscriptionModal = () => {
         customNotification('info', 'top', 'Перенаправляем на оплату');
 
         setTimeout(() => {
-          navigate.push(result.link);
+          router.push(result.link);
         }, 2000);
       }
     });
   };
-
-  const onCancel = () => {
-    if (subscriptionInfo.subscriptionPlan === null) return;
-    setOpenSubscription(false);
-  };
-
-  useEffect(() => {}, []);
 
   const options = [
     {title: 'Демо', value: 'demo', price: 300, description: 'Получить анализ для своей кампании'},
@@ -51,37 +46,55 @@ export const ChangeSubscriptionModal = () => {
     }
   ];
 
-  return (
-    <Modal open={openSubscription} onCancel={onCancel} footer={false}>
-      <Form
-        layout='vertical'
-        onFinish={onFinish}
-        initialValues={{subscriptionPlan: subscriptionInfo?.subscriptionPlan || 'basic'}}
-        requiredMark={false}
-      >
-        <h2 className='mb-5'>Желаете получить полный набор для аналитики кампании?</h2>
+  const isDisabledRadio = (value) => {
+    if (value === 'demo') {
+      if (subscriptionInfo?.subscriptionPlan === 'basic' || subscriptionInfo?.subscriptionPlan === 'advance')
+        return true;
 
-        <Form.Item label='Выберите план' name='subscriptionPlan'>
-          <Radio.Group>
-            <Space direction='vertical'>
-              {options.map(({description, price, title, value}) => (
-                <Radio value={value}>
-                  <div className='ml-3 p-3'>
-                    <div className={s.grid}>
-                      <h2 className='text-xl'>{title}</h2>
-                      <p className='font-bold text-lg'>{price} RUB</p>
-                    </div>
-                    <div>{description}</div>
+      return false;
+    }
+
+    if (value === 'basic') {
+      if (subscriptionInfo?.subscriptionPlan === 'advance') return true;
+
+      return false;
+    }
+  };
+
+  return (
+    <Form
+      layout='vertical'
+      onFinish={onFinish}
+      initialValues={{subscriptionPlan: subscriptionInfo?.subscriptionPlan || 'basic'}}
+      requiredMark={false}
+    >
+      <Form.Item label='Выберите желаемый план' name='subscriptionPlan'>
+        <Radio.Group>
+          <Space direction='vertical'>
+            {options.map(({description, price, title, value}) => (
+              <Radio value={value} className='w-full mb-3' disabled={isDisabledRadio(value)}>
+                <div className='w-full ml-2'>
+                  <div className='flex gap-2 items-center'>
+                    <h2 className='text-xl'>{title}</h2>
+                    <p className='text-lg text-primary-500'>({price} RUB)</p>
                   </div>
-                </Radio>
-              ))}
-            </Space>
-          </Radio.Group>
-        </Form.Item>
+                  <div>{description}</div>
+                </div>
+              </Radio>
+            ))}
+          </Space>
+        </Radio.Group>
+      </Form.Item>
+      <Space>
+        <Link href={backUrl}>
+          <Btn primary className='mt-2 flex justify-center m-auto' htmlTypeButton='submit' loading={isLoading}>
+            Вернуться назад
+          </Btn>
+        </Link>
         <Btn className='mt-2 flex justify-center m-auto' htmlTypeButton='submit' loading={isLoading}>
           Далее
         </Btn>
-      </Form>
-    </Modal>
+      </Space>
+    </Form>
   );
 };

@@ -34,7 +34,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const searchParams = useSearchParams();
   const paymentStatus = searchParams.get('paymentStatus');
   const [mounted, setMounted] = useState(false);
-  const {setCampaign, setOpenCampaign, setOpenSubscription, setSubscriptionInfo} = useStore();
+  const {setCampaign, setSubscriptionInfo} = useStore();
   const {data, isSuccess} = useQuery('data', () => GetUser());
   const {mutate: confirmPayment, isLoading} = useMutation(confirmSubscription);
 
@@ -47,18 +47,20 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
       return null;
     }
 
-    if (data?.user.subscriptionPlan === null) {
+    const {subscriptionPlan, subscriptionExpiresAt, campaign, email} = data?.user;
+
+    if (subscriptionPlan === null) {
       if (paymentStatus === 'success') return;
-      setOpenSubscription(true);
+      router.push('/subscription');
     }
 
-    if (data?.user.campaign === null) {
-      setOpenCampaign(true);
+    if (campaign === null) {
+      router.push('/campaign');
     }
 
-    setSubscriptionInfo(data?.user.subscriptionPlan);
-    setCampaign(data?.user.campaign);
-    localStorage.setItem('email', data?.user.email);
+    setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
+    setCampaign(campaign);
+    localStorage.setItem('email', email);
   }, [isSuccess, data]);
 
   useEffect(() => {
@@ -81,7 +83,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
     }
   }, []);
 
-  if (!mounted || isLoading) {
+  if (!mounted || isLoading || !isSuccess) {
     return <Loading />;
   }
 

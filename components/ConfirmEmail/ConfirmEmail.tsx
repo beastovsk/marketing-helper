@@ -12,7 +12,7 @@ import {ConfirmEmail} from '@/src/api';
 export const ConfirmEmailModal = () => {
   const router = useRouter();
 
-  const {openConfirmCode, setOpenConfirmCode, setOpenCampaign} = useStore();
+  const {openConfirmCode, setOpenConfirmCode} = useStore();
   const {mutate: confirm, isLoading: isConfirmLoading} = useMutation(ConfirmEmail);
 
   const onConfirmFinish = (value) => {
@@ -26,9 +26,8 @@ export const ConfirmEmailModal = () => {
             setOpenConfirmCode(false);
           }
           if (data?.token) {
-            router.push('/dashboard');
             setCookie('token', data?.token);
-            setOpenCampaign(true);
+            router.push('/campaign');
           }
           customNotification('info', 'top', 'Информация', data?.message);
         }
