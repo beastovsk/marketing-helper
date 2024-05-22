@@ -90,7 +90,7 @@ export const ChangeCampaignModal = () => {
             </Btn>
           </Link>
           <Btn className='w-full mt-2' htmlTypeButton='submit' loading={isLoading}>
-            Отправить
+            Сохранить
           </Btn>
         </Form>
       </div>

@@ -63,7 +63,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
     localStorage.setItem('email', email);
 
     return () => {
-      console.log('leave uf');
+      setCampaign(null);
     };
   }, [isSuccess, data]);
 
@@ -80,6 +80,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
             if (data.status === 'paid') {
               customNotification('success', 'top', 'Благодарим за покупку');
               router.push('/dashboard');
+              router.refresh();
             }
           }
         }
