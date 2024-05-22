@@ -1,7 +1,14 @@
-import {Budjet} from '@/modules/Dashboard/Budjet/Budjet';
-import {Main} from '@/modules/Dashboard/Main/Main';
 import React from 'react';
+import dynamic from 'next/dynamic';
+
+const Budjet = dynamic(() => import('@/modules/Dashboard/Budjet/Budjet'));
+const Optimization = dynamic(() => import('@/modules/Dashboard/Optimization/Optimization'));
 
 export default async function Page() {
-  return <Budjet />;
+  return (
+    <>
+      <Budjet />
+      <Optimization />
+    </>
+  );
 }

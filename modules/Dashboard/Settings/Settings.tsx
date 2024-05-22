@@ -7,22 +7,10 @@ import {ChangeEmailModal} from '@/components/ChangeEmail/ChangeEmail';
 import {ResetPasswordModal} from '@/components/ResetPassword/ResetPassword';
 import dayjs from 'dayjs';
 import Link from 'next/link';
+import {getTitleOfSubscription} from '@/src/helpers/util';
 
 export const Settings = () => {
   const {setOpenChangeEmail, setOpenResetPassword, subscriptionInfo, campaign} = useStore();
-
-  const getTitleOfSubscription = () => {
-    const plan = subscriptionInfo?.subscriptionPlan;
-
-    switch (plan) {
-      case 'demo':
-        return 'Демо';
-      case 'basic':
-        return 'Базовый';
-      case 'advanced':
-        return 'Продвинутый';
-    }
-  };
 
   return (
     <div>
@@ -63,7 +51,7 @@ export const Settings = () => {
           Изменить пароль <EditButton onClick={() => setOpenResetPassword(true)} />
         </h3>
         <h3 className={s.subtitle}>
-          Подписка: {getTitleOfSubscription()}{' '}
+          Подписка: {getTitleOfSubscription(subscriptionInfo?.subscriptionPlan)}{' '}
           <Link href='/subscription'>
             <EditButton />
           </Link>

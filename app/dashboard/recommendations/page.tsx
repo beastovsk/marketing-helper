@@ -1,6 +1,8 @@
-import {Recommendations} from '@/modules/Dashboard/Recommendations/Recommendations';
 import React from 'react';
+import dynamic from 'next/dynamic';
 
-export default async function Page() {
+const Recommendations = dynamic(() => import('@/modules/Dashboard/Recommendations/Recommendations'));
+
+export default function Page() {
   return <Recommendations />;
 }

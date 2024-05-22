@@ -1,0 +1,19 @@
+.wrapper {
+  position: relative;
+  filter: blur(5px);
+  z-index: 888;
+}
+
+.blocker {
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  width: max-content;
+  //   filter: blur(8px);
+}

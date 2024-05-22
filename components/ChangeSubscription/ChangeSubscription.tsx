@@ -42,11 +42,13 @@ export const ChangeSubscriptionModal = () => {
       title: 'Продвинутый',
       value: 'advanced',
       price: 3000,
-      description: 'Получить прогнозы, детальный анализ и личного ассистента'
+      description: 'В разработке добавления ИИ ассистента'
     }
   ];
 
   const isDisabledRadio = (value) => {
+    if (value === 'advanced') return true;
+
     if (value === 'demo') {
       if (subscriptionInfo?.subscriptionPlan === 'basic' || subscriptionInfo?.subscriptionPlan === 'advance')
         return true;

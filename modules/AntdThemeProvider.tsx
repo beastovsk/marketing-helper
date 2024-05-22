@@ -44,7 +44,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
       router.push('/auth');
       localStorage.removeItem('email');
       deleteCookie('token');
-      return null;
+      return;
     }
 
     const {subscriptionPlan, subscriptionExpiresAt, campaign, email} = data?.user;
