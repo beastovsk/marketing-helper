@@ -18,7 +18,7 @@ const dateFormat = 'YYYY/MM/DD';
 
 export const ChangeCampaignModal = () => {
   const router = useRouter();
-  const {campaign, setCampaign} = useStore();
+  const {campaign, setCampaign, subscriptionInfo} = useStore();
   const {mutate, isLoading, isSuccess} = useMutation(ChangeCampaign);
   const [initialValues, setInitialValues] = useState(null);
   const camebackUrl = campaign === null ? '/' : '/dashboard/settings';
@@ -28,8 +28,8 @@ export const ChangeCampaignModal = () => {
         if (!data?.message) return;
         if (data?.message === 'Успешно сохранено') {
           setCampaign(value);
-          // TODO Тоггл маршрута на платеж или dashboard
-          // router.push('')
+          const {subscriptionPlan} = subscriptionInfo;
+          router.push(subscriptionPlan ? '/dashboard/settings' : '/subscription');
         }
         customNotification('info', 'top', 'Информация', data?.message);
       }
@@ -37,7 +37,6 @@ export const ChangeCampaignModal = () => {
   };
 
   useEffect(() => {
-    console.log(campaign === null);
     if (campaign === null) return;
 
     const [startDate, endDate] = campaign.date;
@@ -47,7 +46,7 @@ export const ChangeCampaignModal = () => {
     });
   }, [campaign]);
 
-  if (initialValues === null) {
+  if (initialValues === null && campaign !== null) {
     return <Loading />;
   }
 

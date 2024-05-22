@@ -87,7 +87,7 @@ export const ChangeSubscriptionModal = () => {
       </Form.Item>
       <Space>
         <Link href={backUrl}>
-          <Btn primary className='mt-2 flex justify-center m-auto' htmlTypeButton='submit' loading={isLoading}>
+          <Btn primary className='mt-2 flex justify-center m-auto'>
             Вернуться назад
           </Btn>
         </Link>

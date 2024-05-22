@@ -61,6 +61,10 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
     setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
     setCampaign(campaign);
     localStorage.setItem('email', email);
+
+    return () => {
+      console.log('leave uf');
+    };
   }, [isSuccess, data]);
 
   useEffect(() => {
