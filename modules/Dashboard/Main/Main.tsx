@@ -31,7 +31,7 @@ const Main = () => {
 
   return (
     <SubscriptionBlocker requiredPlan='demo'>
-      <>
+      <div>
         <h1 className={s.title}>Сервис по анализу маркетинговых стратегий с помощью ИИ</h1>
         <h2 className={s.subtitle}>Маркетинг и реклама (актуально)</h2>
 
@@ -44,7 +44,7 @@ const Main = () => {
             </div>
           ))}
         </div>
-      </>
+      </div>
     </SubscriptionBlocker>
   );
 };

@@ -20,7 +20,7 @@ const Budjet = () => {
   ];
   return (
     <SubscriptionBlocker requiredPlan='demo'>
-      <>
+      <div>
         <h1 className={s.title}>Бюджет</h1>
         <div className='grid grid-cols-2 md:grid-cols-1 gap-4 mt-5'>
           {list.map(({amount, review, range, title}) => (
@@ -32,7 +32,7 @@ const Budjet = () => {
             </div>
           ))}
         </div>
-      </>
+      </div>
     </SubscriptionBlocker>
   );
 };
