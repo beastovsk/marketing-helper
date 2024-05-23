@@ -31,41 +31,47 @@ dayjs.locale('ru');
 
 function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const paymentStatus = searchParams.get('paymentStatus');
   const [mounted, setMounted] = useState(false);
   const {setCampaign, setSubscriptionInfo} = useStore();
-  const {data, isSuccess, refetch} = useQuery('data', () => GetUser());
+  const {mutate, isSuccess} = useMutation(GetUser);
   const {mutate: confirmPayment, isLoading} = useMutation(confirmSubscription);
 
   useEffect(() => {
-    if (!isSuccess) return;
-    if (!data?.user) {
-      router.push('/auth');
-      localStorage.removeItem('email');
-      deleteCookie('token');
-      return;
-    }
+    if (pathname === '/') return;
+    mutate(null, {
+      onSuccess: (data) => {
+        if (!data?.user) {
+          router.push('/auth');
+          localStorage.removeItem('email');
+          deleteCookie('token');
+          return;
+        }
 
-    const {subscriptionPlan, subscriptionExpiresAt, campaign, email} = data?.user;
+        const {subscriptionPlan, subscriptionExpiresAt, campaign, email} = data?.user;
 
-    if (subscriptionPlan === null) {
-      if (paymentStatus === 'success') return;
-      router.push('/subscription');
-    }
+        if (subscriptionPlan === null) {
+          console.log(true);
+          if (paymentStatus === 'success') return;
+          router.push('/subscription');
+        }
 
-    if (campaign === null) {
-      router.push('/campaign');
-    }
+        if (campaign === null) {
+          router.push('/campaign');
+        }
 
-    setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
-    setCampaign(campaign);
-    localStorage.setItem('email', email);
+        setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
+        setCampaign(campaign);
+        localStorage.setItem('email', email);
+      }
+    });
 
     return () => {
       setCampaign(null);
     };
-  }, [isSuccess, data]);
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -86,7 +92,6 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
         }
       );
     }
-    refetch();
   }, []);
 
   if (!mounted || isLoading || !isSuccess) {

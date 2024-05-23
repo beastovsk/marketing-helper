@@ -39,8 +39,11 @@ export const Auth: FC<AuthProps> = () => {
           setOpenConfirmCode(true);
         }
         if (data?.token) {
-          router.push('/dashboard');
-          setCookie('token', data?.token);
+          const {hasCampaign, hasSubscription, token} = data;
+          setCookie('token', token);
+          if (hasCampaign && hasSubscription) return router.push('/dashboard');
+          if (!hasCampaign) return router.push('/campaign');
+          if (!hasSubscription) return router.push('/subscription');
         }
         customNotification('info', 'top', 'Информация', data?.message);
       }
