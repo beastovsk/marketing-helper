@@ -94,7 +94,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
     }
   }, []);
 
-  if (!mounted || isLoading || !isSuccess) {
+  if (!mounted) {
     return <Loading />;
   }
 
