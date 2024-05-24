@@ -34,9 +34,9 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const pathname = usePathname();
 
   const [mounted, setMounted] = useState(false);
-  const {setCampaign, setSubscriptionInfo} = useStore();
+  const {setCampaign, setSubscriptionInfo, subscriptionInfo} = useStore();
   const {mutate, isSuccess} = useMutation(GetUser);
-
+  console.log(pathname);
   useEffect(() => {
     setMounted(true);
     if (pathname === '/') return;
@@ -50,7 +50,6 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
         }
 
         const {subscriptionPlan, subscriptionExpiresAt, campaign, email} = data?.user;
-
         setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
         setCampaign(campaign);
         localStorage.setItem('email', email);
@@ -70,7 +69,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
     return () => {
       setCampaign(null);
     };
-  }, []);
+  }, [pathname]);
 
   if (!mounted) {
     return <Loading />;
