@@ -32,14 +32,13 @@ dayjs.locale('ru');
 function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const paymentStatus = searchParams.get('paymentStatus');
+
   const [mounted, setMounted] = useState(false);
   const {setCampaign, setSubscriptionInfo} = useStore();
   const {mutate, isSuccess} = useMutation(GetUser);
-  const {mutate: confirmPayment, isLoading} = useMutation(confirmSubscription);
 
   useEffect(() => {
+    setMounted(true);
     if (pathname === '/') return;
     mutate(null, {
       onSuccess: (data) => {
@@ -52,46 +51,25 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
 
         const {subscriptionPlan, subscriptionExpiresAt, campaign, email} = data?.user;
 
+        setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
+        setCampaign(campaign);
+        localStorage.setItem('email', email);
+
+        if (pathname === '/payment/') return;
+
         if (subscriptionPlan === null) {
-          console.log(true);
-          if (paymentStatus === 'success') return;
           router.push('/subscription');
         }
 
         if (campaign === null) {
           router.push('/campaign');
         }
-
-        setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
-        setCampaign(campaign);
-        localStorage.setItem('email', email);
       }
     });
 
     return () => {
       setCampaign(null);
     };
-  }, []);
-
-  useEffect(() => {
-    setMounted(true);
-    if (paymentStatus === 'success') {
-      const uuid = localStorage.getItem('uuid');
-      const plan = localStorage.getItem('plan');
-
-      confirmPayment(
-        {uuid, plan},
-        {
-          onSuccess: (data) => {
-            if (data.status === 'paid') {
-              customNotification('success', 'top', 'Благодарим за покупку');
-              router.push('/dashboard');
-              router.refresh();
-            }
-          }
-        }
-      );
-    }
   }, []);
 
   if (!mounted) {

@@ -1,17 +1,19 @@
 'use client';
 
-import {HomeOutlined, ImportOutlined, SettingOutlined, TeamOutlined, WalletOutlined} from '@ant-design/icons';
+import {HomeOutlined, LogoutOutlined, SettingOutlined, TeamOutlined, WalletOutlined} from '@ant-design/icons';
 import {deleteCookie} from 'cookies-next';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import React, {FC} from 'react';
 import s from './Sidebar.module.scss';
 import {Logo} from '@/components/UI/Logo/Logo';
+import {useStore} from '@/src/store';
 
 interface SidebarProps {}
 
 export const Sidebar: FC<SidebarProps> = () => {
   const pathname = usePathname();
+  const {setCampaign, setSubscriptionInfo} = useStore();
 
   const navigationMenu = [
     {
@@ -64,9 +66,11 @@ export const Sidebar: FC<SidebarProps> = () => {
           deleteCookie('token');
           deleteCookie('refreshToken');
           deleteCookie('username');
+          setCampaign(null);
+          setSubscriptionInfo(null);
         }}
       >
-        <ImportOutlined className='text-2xl cursor-pointer' color='#111' />
+        <LogoutOutlined className='text-2xl cursor-pointer' color='#111' />
         <p className='flex'>Выход</p>
       </Link>
     </div>
