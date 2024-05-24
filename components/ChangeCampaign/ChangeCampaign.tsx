@@ -6,7 +6,7 @@ import {useMutation} from 'react-query';
 import {customNotification} from '@/src/helpers/customNotification';
 
 import {useStore} from '@/src/store';
-import {ChangeCampaign} from '@/src/api';
+import {ChangeCampaign, StatisticCampaign} from '@/src/api';
 import dayjs from 'dayjs';
 import {useEffect, useState} from 'react';
 import {useRouter} from 'next/navigation';
@@ -20,6 +20,7 @@ export const ChangeCampaignModal = () => {
   const router = useRouter();
   const {campaign, setCampaign, subscriptionInfo} = useStore();
   const {mutate, isLoading, isSuccess} = useMutation(ChangeCampaign);
+  const {mutate: getData} = useMutation(StatisticCampaign);
   const [initialValues, setInitialValues] = useState(null);
   const camebackUrl = campaign === null || !subscriptionInfo?.subsciptionPlan ? '/' : '/dashboard/settings';
   const onFinish = (value) => {
@@ -27,6 +28,7 @@ export const ChangeCampaignModal = () => {
       onSuccess: (data) => {
         if (!data?.message) return;
         if (data?.message === 'Успешно сохранено') {
+          getData()
           setCampaign(value);
           router.push(subscriptionInfo?.subscriptionPlan ? '/dashboard/settings' : '/subscription');
         }
