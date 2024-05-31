@@ -36,7 +36,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const [mounted, setMounted] = useState(false);
   const {setCampaign, setSubscriptionInfo, subscriptionInfo} = useStore();
   const {mutate, isSuccess} = useMutation(GetUser);
-  console.log(pathname);
+
   useEffect(() => {
     setMounted(true);
     if (pathname === '/') return;
