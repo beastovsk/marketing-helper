@@ -65,9 +65,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </Head>
       <body>
-        <main className={gilroy.className}>
-          <ClientProvider>{children}</ClientProvider>
-        </main>
+        <main className={gilroy.className}>{children} </main>
         <Script type='text/javascript'>
           {`(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
    m[i].l=1*new Date();

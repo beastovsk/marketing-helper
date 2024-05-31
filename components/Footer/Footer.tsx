@@ -10,36 +10,44 @@ export const Footer: FC<FooterProps> = (props) => {
   const token = getCookie('token');
   const linksList = [
     {
-      title: '',
+      title: 'Документы',
       links: [
         {
-          label: '',
-          href: ''
+          label: 'Лицензия на продажу интеллектуальной собственности',
+          href: '/docs/intellectual_property'
         },
         {
-          label: '',
-          href: ''
+          label: 'Подтверждение согласия правообладателя на реализацию товара с его товарным знаком',
+          href: '/docs/copywrite'
         },
         {
-          label: '',
-          href: ''
+          label: 'Договор оферты',
+          href: '/docs/public_offer'
+        },
+        {
+          label: 'Условия возврата и отмены платежа',
+          href: '/docs/refund'
         }
       ]
     },
     {
-      title: '',
+      title: 'Контакты',
       links: [
         {
-          label: '',
+          label: 'narshinovartyom@mail.ru',
+          href: 'mailto:narshinovartyom@mail.ru'
+        },
+        {
+          label: '+7 (909) 330-23-11',
+          href: 'tel:89093302311'
+        },
+        {
+          label: 'Россия, г. Саратов, ул. Чехова 6а, кв.6',
           href: ''
         },
         {
-          label: '',
-          href: ''
-        },
-        {
-          label: '',
-          href: ''
+          label: 'Поддержка',
+          href: 'https://t.me/beastovsk'
         }
       ]
     }
@@ -54,11 +62,17 @@ export const Footer: FC<FooterProps> = (props) => {
           </div>
           <div className='flex gap-20 flex-grow justify-center md:justify-start lg:mt-10'>
             {linksList.map(({links, title}, i) => (
-              <div key={i}>
-                <h2 className='text-lg mb-3'>{title}</h2>
-                <div className='flex flex-col gap-1 text-gray-400'>
+              <div key={i} className='w-1/3'>
+                <h2 className='text-lg mb-3 '>{title}</h2>
+                <div className='flex flex-col gap-1 text-gray-400 w-max'>
                   {links.map(({href, label}, i) => (
-                    <Link key={i} href={href} className='hover:opacity-70 transition-opacity'>
+                    <Link
+                      key={i}
+                      href={href}
+                      className={`hover:opacity-70 transition-opacity break-words ${
+                        title === 'Контакты' ? 'w-full' : 'w-1/2'
+                      } `}
+                    >
                       {label}
                     </Link>
                   ))}
