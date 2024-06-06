@@ -14,7 +14,7 @@ const Optimization = () => {
 
   return (
     <SubscriptionBlocker requiredPlan='basic'>
-      <div className='box mt-10'>
+      <div className='box'>
         <h3 className='text-xl mb-5'>Оптимизация расходов</h3>
         <table className='w-full border-spacing-5 border-separate'>
           <thead>

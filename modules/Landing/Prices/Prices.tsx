@@ -2,6 +2,7 @@ import PreloaderImage from '@/components/PreloaderImage/PreloaderImage';
 import s from './Prices.module.scss';
 import Btn from '@/components/UI/Btn/Btn';
 import reviewImage from '../../../public/image/review.jpg';
+import Link from 'next/link';
 
 export const Prices = () => {
   const data = [
@@ -47,7 +48,9 @@ export const Prices = () => {
                 ))}
               </div>
               <h3 className='mt-auto mb-5 text-xl font-bold text-[#4880ff]'>{price} RUB</h3>
-              <Btn primary>Приобрести</Btn>
+              <Link href='/subscription'>
+                <Btn primary>Приобрести</Btn>
+              </Link>
             </div>
           ))}
         </div>

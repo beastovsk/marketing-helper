@@ -14,7 +14,7 @@ export default async function RootLayout({data, children}: {data: any; children:
         <div className='flex-grow-0 flex-shrink-0 basis-auto'>
           <Header />
         </div>
-        <div className='flex-grow min-h-[90vh] flex-shrink-0 basis-auto container flex flex-col gap-20 md:gap-10 md:pb-[100px] p-[30px] md:pt-[10px] md:px-[10px] '>
+        <div className='flex-grow min-h-[90vh] flex-shrink-0 basis-auto container flex flex-col gap-10 md:gap-5 md:pb-[100px] p-[30px] md:pt-[10px] md:px-[10px] '>
           {children}
         </div>
       </div>

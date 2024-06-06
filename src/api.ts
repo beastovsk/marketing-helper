@@ -163,7 +163,21 @@ export const StatisticCampaign = async () => {
     return data.json();
   });
 };
-
+export const SendSupportMessage = async (body) => {
+  return await fetch(`${API_URL}/api/page/sendSupportMessage`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': `${API_URL}`,
+      'Access-Control-Allow-Headers': `${API_URL}`
+    },
+    method: 'POST',
+    body: JSON.stringify(body)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
 export const UpdateSubscription = async (data) => {
   return await fetch(`${API_URL}/api/user/updateSubscription`, {
     headers: {

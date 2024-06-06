@@ -7,6 +7,7 @@ import s from './Banner.module.scss';
 import Btn from '@/components/UI/Btn/Btn';
 import Image from 'next/image';
 import Loading from '@/app/loading';
+import Link from 'next/link';
 
 export const Banner = () => {
   return (
@@ -23,8 +24,12 @@ export const Banner = () => {
             Мы поможем вам принимать обоснованные решения и достигать выдающихся результатов.
           </span>
           <div className={s.buttons}>
-            <Btn>Попробовать</Btn>
-            <Btn primary>Подробнее</Btn>
+            <Link href='/auth'>
+              <Btn>Попробовать</Btn>
+            </Link>
+            <Link href='#about'>
+              <Btn primary>Подробнее</Btn>
+            </Link>
           </div>
         </div>
         <PreloaderImage

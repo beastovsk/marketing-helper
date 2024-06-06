@@ -38,8 +38,10 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const {mutate, isLoading} = useMutation(GetUser);
 
   useEffect(() => {
+    console.log(pathname);
     setMounted(true);
-    if (pathname === '/') return;
+    if (pathname !== '/dashboard/') return;
+
     mutate(null, {
       onSuccess: (data) => {
         if (!data?.user) {
@@ -53,8 +55,6 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
         setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
         setCampaign(campaign);
         localStorage.setItem('email', email);
-
-        if (pathname === '/payment/') return;
 
         if (subscriptionPlan === null) {
           router.push('/subscription');

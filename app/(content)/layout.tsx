@@ -3,5 +3,5 @@ import ClientProvider from '@/modules/ClientProvider';
 import React from 'react';
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
-  return <ClientProvider>{children}</ClientProvider>;
+  return <>{children}</>;
 }

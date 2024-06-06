@@ -3,10 +3,10 @@
 import Btn from '@/components/UI/Btn/Btn';
 import {customNotification} from '@/src/helpers/customNotification';
 import {Form, Input, Tooltip} from 'antd';
-import {setCookie} from 'cookies-next';
+import {getCookie, setCookie} from 'cookies-next';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useMutation} from 'react-query';
 import s from './Auth.module.scss';
 
@@ -49,6 +49,14 @@ export const Auth: FC<AuthProps> = () => {
       }
     });
   };
+
+  useEffect(() => {
+    const hasToken = !!getCookie('token');
+
+    if (hasToken) {
+      router.push('/dashboard');
+    }
+  }, []);
 
   return (
     <animated.div ref={ref} style={springs} className={s.container}>
