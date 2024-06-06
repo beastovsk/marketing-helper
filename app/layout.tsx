@@ -63,11 +63,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <meta name='yandex-verification' content='c4492d1cc4639f2c' />
         <YandexMetrika yid={97298086} clickmap={true} trackLinks={true} accurateTrackBounce={true} webvisor={true} />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name='lava-verify' content='8131291e2cfdbde8' />
       </Head>
       <body>
-        <main className={gilroy.className}>
-          <ClientProvider>{children}</ClientProvider>
-        </main>
+        <main className={gilroy.className}>{children} </main>
         <Script type='text/javascript'>
           {`(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
    m[i].l=1*new Date();

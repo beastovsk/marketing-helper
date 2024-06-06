@@ -2,6 +2,7 @@
 
 import {MenuOutlined} from '@ant-design/icons';
 import {Drawer} from 'antd';
+import {getCookie} from 'cookies-next';
 import Link from 'next/link';
 import React, {FC, useState} from 'react';
 import Btn from '../UI/Btn/Btn';
@@ -12,9 +13,15 @@ interface HeaderProps {}
 
 export const Header: FC<HeaderProps> = (props) => {
   const [open, setOpen] = useState(false);
+  const hasToken = !!getCookie('token');
 
   const content = (
-    <div className={s.content}>
+    <div className='flex gap-5 md:flex-col'>
+      {hasToken ? (
+        <Link href='/dashboard'>
+          <Btn className='md:w-full'>Перейти в панель</Btn>
+        </Link>
+      ) : null}
       <Btn primary>Поддержка</Btn>
     </div>
   );
@@ -23,16 +30,7 @@ export const Header: FC<HeaderProps> = (props) => {
       <div className='w-[200px]'>
         <Logo />
       </div>
-      <div className='w-1/3 flex flex-col items-center'>
-        <span className='text-lg font-bold'>Сервис в разработке</span>
-        <span className='text-center'>
-          Если вы увидели в поисковой системе этот сайт, отпишитесь пожалуйста в{' '}
-          <Link href='https://t.me/beastovsk' className='text-primary-500 hover:opacity-70'>
-            телеграмм
-          </Link>{' '}
-          и мы дадим вам скидку при запуске
-        </span>
-      </div>
+
       <div className='hidden md:flex' onClick={() => setOpen(true)}>
         <MenuOutlined className='text-xl opacity-80' />
       </div>

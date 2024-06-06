@@ -36,7 +36,7 @@ export const Header: FC<HeaderProps> = () => {
         }}
       >
         <LogoutOutlined className='text-2xl cursor-pointer' color='#111' />
-        <p className='flex  md:hidden'>Выход</p>
+        {/* <p className='flex  md:hidden'>Выход</p> */}
       </Link>
     </div>
   );

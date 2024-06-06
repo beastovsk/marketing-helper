@@ -5,9 +5,11 @@ import {confirmSubscription} from '@/src/api';
 import {customNotification} from '@/src/helpers/customNotification';
 import {Result} from 'antd';
 import {ResultStatusType} from 'antd/es/result';
+import Link from 'next/link';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {useEffect, useState} from 'react';
 import {useMutation} from 'react-query';
+import Btn from '../UI/Btn/Btn';
 
 export const PaymentDisplay = () => {
   const router = useRouter();
@@ -46,8 +48,11 @@ export const PaymentDisplay = () => {
   }
 
   return (
-    <>
+    <div className='flex flex-col'>
       <Result status={status === 'failed' ? 'error' : 'success'} title={title} />
-    </>
+      <Link href='/dashboard'>
+        <Btn>Вернуться</Btn>
+      </Link>
+    </div>
   );
 };
