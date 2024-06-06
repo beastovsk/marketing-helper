@@ -31,6 +31,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        success: {
+          500: '#00B69B'
+        },
         primary: {
           500: '#4880ff'
         },

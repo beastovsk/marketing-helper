@@ -35,8 +35,8 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
 
   const [mounted, setMounted] = useState(false);
   const {setCampaign, setSubscriptionInfo, subscriptionInfo} = useStore();
-  const {mutate, isSuccess} = useMutation(GetUser);
-  console.log(pathname);
+  const {mutate, isLoading} = useMutation(GetUser);
+
   useEffect(() => {
     setMounted(true);
     if (pathname === '/') return;
@@ -71,7 +71,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
     };
   }, [pathname]);
 
-  if (!mounted) {
+  if (!mounted || isLoading) {
     return <Loading />;
   }
 
