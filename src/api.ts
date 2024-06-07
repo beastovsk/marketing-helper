@@ -163,21 +163,7 @@ export const StatisticCampaign = async () => {
     return data.json();
   });
 };
-export const UpdateStatistic = async (data) => {
-  return await fetch(`${API_URL}/api/page/updateCampaignStatistic`, {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${getCookie('token')}`,
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`,
-      body: JSON.stringify(data)
-    }
-  }).then((data) => {
-    if (!data.ok) return;
-    return data.json();
-  });
-};
+
 export const SendSupportMessage = async (body) => {
   return await fetch(`${API_URL}/api/page/sendSupportMessage`, {
     headers: {

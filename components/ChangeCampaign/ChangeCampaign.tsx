@@ -6,7 +6,7 @@ import {useMutation} from 'react-query';
 import {customNotification} from '@/src/helpers/customNotification';
 
 import {useStore} from '@/src/store';
-import {ChangeCampaign, StatisticCampaign, UpdateStatistic} from '@/src/api';
+import {ChangeCampaign, StatisticCampaign} from '@/src/api';
 import dayjs from 'dayjs';
 import {useEffect, useMemo, useState} from 'react';
 import {useRouter} from 'next/navigation';
@@ -21,8 +21,7 @@ export const ChangeCampaignModal = () => {
   const router = useRouter();
   const {campaign, setCampaign, subscriptionInfo} = useStore();
   const {mutate, isLoading} = useMutation(ChangeCampaign);
-  const {mutate: update} = useMutation(UpdateStatistic);
-  const {mutate: getData, isSuccess, data: statistic, isLoading: isDataLoading} = useMutation(StatisticCampaign);
+  const {mutate: getData, isLoading: isDataLoading} = useMutation(StatisticCampaign);
   const [initialValues, setInitialValues] = useState(null);
   const camebackUrl = !!getCookie('token') ? '/dashboard/settings' : '/';
   const onFinish = (value) => {
@@ -43,14 +42,6 @@ export const ChangeCampaignModal = () => {
       }
     });
   };
-
-  useEffect(() => {
-    console.log(statistic);
-    console.log(isSuccess);
-    if (isSuccess) {
-      update(JSON.parse(statistic.response.content), {onSuccess: () => router.push('/dashboard/settings')});
-    }
-  }, [isSuccess, statistic]);
 
   useEffect(() => {
     if (campaign === null) return;
