@@ -20,9 +20,9 @@ const dateFormat = 'YYYY/MM/DD';
 export const ChangeCampaignModal = () => {
   const router = useRouter();
   const {campaign, setCampaign, subscriptionInfo} = useStore();
-  const {mutate, isLoading, isSuccess} = useMutation(ChangeCampaign);
+  const {mutate, isLoading} = useMutation(ChangeCampaign);
   const {mutate: update} = useMutation(UpdateStatistic);
-  const {mutate: getData, isLoading: isDataLoading} = useMutation(StatisticCampaign);
+  const {mutate: getData, isSuccess, isLoading: isDataLoading} = useMutation(StatisticCampaign);
   const [initialValues, setInitialValues] = useState(null);
   const camebackUrl = !!getCookie('token') ? '/dashboard/settings' : '/';
   const onFinish = (value) => {
@@ -33,12 +33,12 @@ export const ChangeCampaignModal = () => {
           setCampaign(value);
 
           if (subscriptionInfo?.subscriptionPlan) {
-            getData(null, {
-              onSuccess: (data) => {
-                update({...JSON.parse(data.response.content)}, {onSuccess: () => router.push('/dashboard/settings')});
-              }
-            });
+            getData();
             return;
+          }
+
+          if (isSuccess) {
+            update(JSON.parse(data.response.content), {onSuccess: () => router.push('/dashboard/settings')});
           }
           router.push('/subscription');
         }
