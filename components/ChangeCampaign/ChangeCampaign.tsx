@@ -45,6 +45,8 @@ export const ChangeCampaignModal = () => {
   };
 
   useEffect(() => {
+    console.log(statistic);
+    console.log(isSuccess);
     if (isSuccess) {
       update(JSON.parse(statistic.response.content), {onSuccess: () => router.push('/dashboard/settings')});
     }
