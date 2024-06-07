@@ -35,7 +35,7 @@ export const ChangeCampaignModal = () => {
           if (subscriptionInfo?.subscriptionPlan) {
             getData(null, {
               onSuccess: (data) => {
-                update(JSON.parse(data.response.content), {onSuccess: () => router.push('/dashboard/settings')});
+                update({...JSON.parse(data.response.content)}, {onSuccess: () => router.push('/dashboard/settings')});
               }
             });
             return;
