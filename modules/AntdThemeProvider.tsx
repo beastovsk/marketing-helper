@@ -38,9 +38,8 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const {mutate, isLoading} = useMutation(GetUser);
 
   useEffect(() => {
-    console.log(pathname);
     setMounted(true);
-    if (pathname !== '/dashboard/') return;
+    if (!pathname.split('/').includes('dashboard')) return;
 
     mutate(null, {
       onSuccess: (data) => {
