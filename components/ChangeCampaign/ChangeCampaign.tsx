@@ -82,12 +82,7 @@ export const ChangeCampaignModal = () => {
           <Form.Item label='Продукт' name='product' rules={[{required: true, message: 'Выберите название продукта'}]}>
             <Input />
           </Form.Item>
-          <Form.Item
-            label='Дата периода кампании'
-            name='date'
-            rules={[{required: true, message: 'Выберите дату'}]}
-            validateTrigger={['onChange', 'onBlur']}
-          >
+          <Form.Item label='Дата периода кампании (необязательно)' name='date' validateTrigger={['onChange', 'onBlur']}>
             <RangePicker format={dateFormat} />
           </Form.Item>
           <Form.Item label='Канал (необязательно)' name='channel'>
