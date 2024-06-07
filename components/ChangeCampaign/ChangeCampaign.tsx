@@ -20,7 +20,7 @@ export const ChangeCampaignModal = () => {
   const router = useRouter();
   const {campaign, setCampaign, subscriptionInfo} = useStore();
   const {mutate, isLoading, isSuccess} = useMutation(ChangeCampaign);
-  const {mutate: getData} = useMutation(StatisticCampaign);
+  const {mutate: getData, isLoading: isDataLoading} = useMutation(StatisticCampaign);
   const [initialValues, setInitialValues] = useState(null);
   const camebackUrl = campaign === null || !subscriptionInfo?.subsciptionPlan ? '/' : '/dashboard/settings';
   const onFinish = (value) => {
@@ -34,6 +34,7 @@ export const ChangeCampaignModal = () => {
             getData(null, {
               onSuccess: (data) => {
                 console.log(JSON.parse(data.response.content));
+                console.log(data.response.content);
 
                 router.push('/dashboard/settings');
               }
@@ -57,7 +58,7 @@ export const ChangeCampaignModal = () => {
     });
   }, [campaign]);
 
-  if (initialValues === null && campaign !== null) {
+  if ((initialValues === null && campaign !== null) || isDataLoading) {
     return <Loading />;
   }
 
