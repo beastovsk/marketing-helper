@@ -39,11 +39,10 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
 
   useEffect(() => {
     setMounted(true);
-    if (pathname === '/') return;
+    if (pathname !== '/dashboard/' && pathname !== '/campaign/' && pathname !== '/subscription/') return;
 
     mutate(null, {
       onSuccess: (data) => {
-        console.log(data);
         if (!data?.user) {
           router.push('/auth');
           localStorage.removeItem('email');
