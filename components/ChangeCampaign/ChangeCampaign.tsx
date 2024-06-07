@@ -28,7 +28,9 @@ export const ChangeCampaignModal = () => {
       onSuccess: (data) => {
         if (!data?.message) return;
         if (data?.message === 'Успешно сохранено') {
-          getData()
+          if (subscriptionInfo?.subscriptionPlan) {
+            getData();
+          }
           setCampaign(value);
           router.push(subscriptionInfo?.subscriptionPlan ? '/dashboard/settings' : '/subscription');
         }
