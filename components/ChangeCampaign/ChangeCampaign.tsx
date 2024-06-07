@@ -8,10 +8,11 @@ import {customNotification} from '@/src/helpers/customNotification';
 import {useStore} from '@/src/store';
 import {ChangeCampaign, StatisticCampaign} from '@/src/api';
 import dayjs from 'dayjs';
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {useRouter} from 'next/navigation';
 import Loading from '@/app/loading';
 import Link from 'next/link';
+import {getCookie} from 'cookies-next';
 const {RangePicker} = DatePicker;
 
 const dateFormat = 'YYYY/MM/DD';
@@ -22,7 +23,7 @@ export const ChangeCampaignModal = () => {
   const {mutate, isLoading, isSuccess} = useMutation(ChangeCampaign);
   const {mutate: getData, isLoading: isDataLoading} = useMutation(StatisticCampaign);
   const [initialValues, setInitialValues] = useState(null);
-  const camebackUrl = campaign === null || !subscriptionInfo?.subsciptionPlan ? '/' : '/dashboard/settings';
+  const camebackUrl = !!getCookie('token') ? '/dashboard/settings' : '/';
   const onFinish = (value) => {
     mutate(value, {
       onSuccess: (data) => {
@@ -58,12 +59,22 @@ export const ChangeCampaignModal = () => {
     });
   }, [campaign]);
 
-  if ((initialValues === null && campaign !== null) || isDataLoading) {
+  if (isDataLoading) {
+    return (
+      <div className='flex flex-col items-center'>
+        <Loading />
+        <h2>Загрузка новых данных</h2>
+        <p className='text-gray-600'>Пожалуйста подождите</p>
+      </div>
+    );
+  }
+
+  if (initialValues === null && campaign !== null) {
     return <Loading />;
   }
 
   return (
-    <div>
+    <div className='w-full'>
       <h2 className='mb-3'>Заполните форму вашей кампании</h2>
       <div>
         <Form layout='vertical' onFinish={onFinish} initialValues={initialValues} requiredMark={false}>
@@ -96,14 +107,16 @@ export const ChangeCampaignModal = () => {
           <Form.Item label='Доходы (необязательно)' name='income'>
             <Input />
           </Form.Item>
-          <Link href={camebackUrl}>
-            <Btn primary className='w-full'>
-              Вернуться назад
+          <div className='flex gap-2 md:flex-col'>
+            <Link href={camebackUrl} className='w-1/2 md:w-full'>
+              <Btn primary className='w-full'>
+                Вернуться назад
+              </Btn>
+            </Link>
+            <Btn className='w-1/2 md:w-full' htmlTypeButton='submit' loading={isLoading}>
+              Сохранить
             </Btn>
-          </Link>
-          <Btn className='w-full mt-2' htmlTypeButton='submit' loading={isLoading}>
-            Сохранить
-          </Btn>
+          </div>
         </Form>
       </div>
     </div>
