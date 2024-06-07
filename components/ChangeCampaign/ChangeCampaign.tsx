@@ -6,7 +6,7 @@ import {useMutation} from 'react-query';
 import {customNotification} from '@/src/helpers/customNotification';
 
 import {useStore} from '@/src/store';
-import {ChangeCampaign, StatisticCampaign} from '@/src/api';
+import {ChangeCampaign, StatisticCampaign, UpdateStatistic} from '@/src/api';
 import dayjs from 'dayjs';
 import {useEffect, useMemo, useState} from 'react';
 import {useRouter} from 'next/navigation';
@@ -21,6 +21,7 @@ export const ChangeCampaignModal = () => {
   const router = useRouter();
   const {campaign, setCampaign, subscriptionInfo} = useStore();
   const {mutate, isLoading, isSuccess} = useMutation(ChangeCampaign);
+  const {mutate: update} = useMutation(UpdateStatistic);
   const {mutate: getData, isLoading: isDataLoading} = useMutation(StatisticCampaign);
   const [initialValues, setInitialValues] = useState(null);
   const camebackUrl = !!getCookie('token') ? '/dashboard/settings' : '/';
@@ -34,10 +35,7 @@ export const ChangeCampaignModal = () => {
           if (subscriptionInfo?.subscriptionPlan) {
             getData(null, {
               onSuccess: (data) => {
-                console.log(JSON.parse(data.response.content));
-                console.log(data.response.content);
-
-                router.push('/dashboard/settings');
+                update(JSON.parse(data.response.content), {onSuccess: () => router.push('/dashboard/settings')});
               }
             });
             return;

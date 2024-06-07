@@ -34,12 +34,13 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const pathname = usePathname();
 
   const [mounted, setMounted] = useState(false);
-  const {setCampaign, setSubscriptionInfo, subscriptionInfo} = useStore();
+  const {setCampaign, setSubscriptionInfo, campaign, subscriptionInfo} = useStore();
   const {mutate, isLoading} = useMutation(GetUser);
 
   useEffect(() => {
     setMounted(true);
-    if (pathname !== '/dashboard/' && pathname !== '/campaign/' && pathname !== '/subscription/') return;
+    if (!pathname.split('/').includes('dashboard') && pathname !== '/campaign/' && pathname !== '/subscription/')
+      return;
 
     mutate(null, {
       onSuccess: (data) => {
