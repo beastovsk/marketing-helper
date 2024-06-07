@@ -22,7 +22,7 @@ export const ChangeCampaignModal = () => {
   const {campaign, setCampaign, subscriptionInfo} = useStore();
   const {mutate, isLoading} = useMutation(ChangeCampaign);
   const {mutate: update} = useMutation(UpdateStatistic);
-  const {mutate: getData, isSuccess, isLoading: isDataLoading} = useMutation(StatisticCampaign);
+  const {mutate: getData, isSuccess, data: statistic, isLoading: isDataLoading} = useMutation(StatisticCampaign);
   const [initialValues, setInitialValues] = useState(null);
   const camebackUrl = !!getCookie('token') ? '/dashboard/settings' : '/';
   const onFinish = (value) => {
@@ -37,15 +37,18 @@ export const ChangeCampaignModal = () => {
             return;
           }
 
-          if (isSuccess) {
-            update(JSON.parse(data.response.content), {onSuccess: () => router.push('/dashboard/settings')});
-          }
           router.push('/subscription');
         }
         customNotification('info', 'top', 'Информация', data?.message);
       }
     });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      update(JSON.parse(statistic.response.content), {onSuccess: () => router.push('/dashboard/settings')});
+    }
+  }, [isSuccess, statistic]);
 
   useEffect(() => {
     if (campaign === null) return;
