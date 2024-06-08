@@ -7,6 +7,7 @@ interface IStore {
   openSubscription: boolean;
   campaign: null | Record<string, string>;
   subscriptionInfo: null | Record<string, string>;
+  statistic: null | Record<any, any>;
 
   setOpenConfirmCode: (param: boolean) => void;
   setOpenResetPassword: (param: boolean) => void;
@@ -14,6 +15,7 @@ interface IStore {
   setOpenSubscription: (param: boolean) => void;
   setCampaign: (param: Record<string, string>) => void;
   setSubscriptionInfo: (param: Record<string, string>) => void;
+  setStatistic: (param: Record<string, string>) => void;
 }
 
 export const useStore = create<IStore>()((set) => ({
@@ -33,5 +35,8 @@ export const useStore = create<IStore>()((set) => ({
   setOpenSubscription: (value) => set(() => ({openSubscription: value})),
 
   subscriptionInfo: null,
-  setSubscriptionInfo: (value) => set(() => ({subscriptionInfo: value}))
+  setSubscriptionInfo: (value) => set(() => ({subscriptionInfo: value})),
+
+  statistic: null,
+  setStatistic: (value) => set(() => ({statistic: value}))
 }));

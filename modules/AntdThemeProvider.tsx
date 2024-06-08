@@ -34,7 +34,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const pathname = usePathname();
 
   const [mounted, setMounted] = useState(false);
-  const {setCampaign, setSubscriptionInfo, campaign, subscriptionInfo} = useStore();
+  const {setCampaign, setSubscriptionInfo, setStatistic} = useStore();
   const {mutate, isLoading} = useMutation(GetUser);
 
   useEffect(() => {
@@ -51,9 +51,14 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
           return;
         }
 
-        const {subscriptionPlan, subscriptionExpiresAt, campaign, email} = data?.user;
+        const {subscriptionPlan, subscriptionExpiresAt, campaign, email, campaignStatistic} = data?.user;
         setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
         setCampaign(campaign);
+
+        if (campaignStatistic) {
+          setStatistic(JSON.parse(campaignStatistic));
+        }
+
         localStorage.setItem('email', email);
 
         if (subscriptionPlan === null) {

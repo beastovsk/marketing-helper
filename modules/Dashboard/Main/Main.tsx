@@ -1,11 +1,14 @@
-import {useQuery} from 'react-query';
-import {Conversion} from '../Conversion/Conversion';
+'use client';
+
 import s from './Main.module.scss';
-import {StatisticCampaign} from '@/src/api';
-import {useEffect} from 'react';
 import {SubscriptionBlocker} from '../SubscriptionBlocker/SubscriptionBlocker';
+import {useStore} from '@/src/store';
+import {PreloadText} from '@/components/UI/PreloadText/PreloadText';
+import {StatusText} from '@/components/UI/StatusText/StatusText';
 
 const Main = () => {
+  const {statistic} = useStore();
+
   const cardsList = [
     {
       label: 'Аудитория',
@@ -14,35 +17,52 @@ const Main = () => {
     },
     {
       label: 'Конверсия',
-      description: '5% (от 3% до 7% в нише)',
-      review: 'Для данной ниши и канала показатель конверсии выше среднего'
+      description: statistic.conversion.value,
+      review: statistic.conversion.review,
+      isGood: statistic.conversion.isGood
     },
     {
       label: 'ROI',
-      description: '300%',
-      review: 'Оптимальный ROI для данной ниши и канала, инвестиции оправданы'
+      description: statistic.roi.value,
+      review: statistic.roi.review,
+      isGood: statistic.roi.isGood
     },
     {
       label: 'SAS',
-      description: '1000 RUB (от 800 до 1200 в нише)',
-      review: 'Хороший показатель, особенно для использования в нише маркетинга и рекламы'
+      description: (
+        <>
+          {statistic.sas.value} ({statistic.sas.rangeForNicheAndChannel})
+        </>
+      ),
+      review: statistic.sas.review,
+      isGood: statistic.sas.isGood
     }
   ];
 
   return (
     <SubscriptionBlocker requiredPlan='demo'>
       <div>
-        <h1 className={s.title}>Сервис по анализу маркетинговых стратегий с помощью ИИ</h1>
-        <h2 className={s.subtitle}>
-          Маркетинг и реклама <span className='text-success-500'>(актуально)</span>
-        </h2>
-
+        <PreloadText className={s.title} elementType='h1'>
+          {statistic.name}
+        </PreloadText>
+        <PreloadText className={s.subtitle} elementType='h2'>
+          {statistic.niche.label}
+          <StatusText success={statistic.niche.isGood} className='ml-2'>
+            ({statistic.niche.review})
+          </StatusText>
+        </PreloadText>
         <div className='grid grid-cols-2 gap-4 md:grid-cols-1 mt-5'>
-          {cardsList.map(({description, label, review}, i) => (
+          {cardsList.map(({description, label, review, isGood}, i) => (
             <div className='box flex-grow' key={i}>
-              <h3 className='text-xl'>{label}</h3>
-              <h4 className='text-lg mt-3'>{description}</h4>
-              <p className='mt-5'>{review}</p>
+              <PreloadText elementType='h1' className='text-xl'>
+                {label}
+              </PreloadText>
+              <PreloadText elementType='h4' className='text-lg mt-3'>
+                {description}
+              </PreloadText>
+              <PreloadText elementType='p' className='mt-5'>
+                <StatusText success={isGood}>{review}</StatusText>
+              </PreloadText>
             </div>
           ))}
         </div>

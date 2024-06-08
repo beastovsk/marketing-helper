@@ -34,6 +34,9 @@ module.exports = {
         success: {
           500: '#00B69B'
         },
+        danger: {
+          500: '#d84343'
+        },
         primary: {
           500: '#4880ff'
         },
@@ -49,8 +52,8 @@ module.exports = {
     },
 
     screens: {
-      lg: {max: '1024px'},
-      md: {max: '990px'},
+      lg: {max: '992px'},
+      md: {max: '768px'},
       sm: {max: '576px'}
     }
   },

@@ -10,7 +10,7 @@ export default async function RootLayout({data, children}: {data: any; children:
   return (
     <div className='flex h-full'>
       <Sidebar />
-      <div className='bg-[#F5F6FA] flex flex-col w-full h-full ml-[300px] md:ml-0 flex-grow '>
+      <div className='bg-[#F5F6FA] flex flex-col w-full h-full ml-[300px] lg:ml-0 flex-grow '>
         <div className='flex-grow-0 flex-shrink-0 basis-auto'>
           <Header />
         </div>

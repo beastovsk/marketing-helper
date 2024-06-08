@@ -40,7 +40,7 @@ export const Sidebar: FC<SidebarProps> = () => {
   return (
     <div className={s.container}>
       <div className='flex flex-col gap-10 md:gap-2 w-full'>
-        <Link href={'/'} className='w-[200px] px-4 pt-5 text-2xl md:hidden hover:opacity-70 transition-opacity'>
+        <Link href={'/'} className='w-[200px] px-4 pt-5 text-2xl lg:hidden hover:opacity-70 transition-opacity'>
           <Logo />
         </Link>
 
@@ -61,7 +61,7 @@ export const Sidebar: FC<SidebarProps> = () => {
       </div>
       <Link
         href={'/auth'}
-        className='hover:text-primary-500 p-5 flex items-center gap-3 transition-[all] w-full text-start text-[#6C7AA0] md:hidden'
+        className='hover:text-primary-500 p-5 flex items-center gap-3 transition-[all] w-full text-start text-[#6C7AA0] lg:hidden'
         onClick={() => {
           deleteCookie('token');
           deleteCookie('refreshToken');
@@ -70,8 +70,8 @@ export const Sidebar: FC<SidebarProps> = () => {
           setSubscriptionInfo(null);
         }}
       >
-        <LogoutOutlined className='text-2xl cursor-pointer' color='#111' />
-        <p className='flex'>Выход</p>
+        <LogoutOutlined className='text-2xl cursor-pointer ' color='#111' />
+        <p className='flex lg:hidden'>Выход</p>
       </Link>
     </div>
   );
