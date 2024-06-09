@@ -81,19 +81,16 @@ export const ChangeCampaignModal = () => {
           <Form.Item label='Дата периода кампании (необязательно)' name='date' validateTrigger={['onChange', 'onBlur']}>
             <RangePicker format={dateFormat} />
           </Form.Item>
-          <Form.Item label='Канал (необязательно)' name='channel'>
+          <Form.Item label='Основной канал (необязательно)' name='channel'>
             <Input />
           </Form.Item>
-          <Form.Item label='Просмотры (необязательно)' name='views'>
-            <Input type='number' />
-          </Form.Item>
-          <Form.Item label='Конверсия (необязательно)' name='conversion'>
+          <Form.Item label='Цель конверсии (необязательно)' name='conversion'>
             <Input />
           </Form.Item>
           <Form.Item label='Расходы (необязательно)' name='expenses'>
             <Input />
           </Form.Item>
-          <Form.Item label='Доходы (необязательно)' name='income'>
+          <Form.Item label='Желаемый доход (необязательно)' name='income'>
             <Input />
           </Form.Item>
           <div className='flex gap-2 md:flex-col'>

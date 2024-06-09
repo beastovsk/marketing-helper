@@ -1,7 +1,7 @@
 'use client';
 
 import Loading from '@/app/loading';
-import {confirmSubscription} from '@/src/api';
+import {StatisticCampaign, confirmSubscription} from '@/src/api';
 import {customNotification} from '@/src/helpers/customNotification';
 import {Result} from 'antd';
 import {ResultStatusType} from 'antd/es/result';
@@ -15,6 +15,7 @@ export const PaymentDisplay = () => {
   const router = useRouter();
   const [status, setStatus] = useState('success');
   const {mutate: confirmPayment, isLoading} = useMutation(confirmSubscription);
+  const {mutate: getData, isLoading: isDataLoading} = useMutation(StatisticCampaign);
   const title = status ? (status === 'success' ? 'Благодарим за покупку!' : 'Произошла проблема во время оплаты') : '';
   const searchParams = useSearchParams();
   const paymentStatus = searchParams.get('paymentStatus');
@@ -30,6 +31,7 @@ export const PaymentDisplay = () => {
         {
           onSuccess: (data) => {
             if (data.status === 'paid') {
+              getData();
               //   router.push('/dashboard');
               //   router.refresh();
             }
