@@ -12,20 +12,20 @@ const Budjet = () => {
   const list = [
     {
       title: 'Расходы',
-      amount: statistic.expenses.value,
-      range: statistic.expenses.range,
-      review: statistic.expenses.review,
-      isGood: statistic.expenses.isGood
+      amount: statistic?.expenses.value,
+      range: statistic?.expenses.range,
+      review: statistic?.expenses.review,
+      isGood: statistic?.expenses.isGood
     },
     {
       title: 'Прогнозируемый доход',
-      amount: statistic.income.value,
-      range: statistic.income.range,
-      review: statistic.income.review,
-      isGood: statistic.expenses.isGood
+      amount: statistic?.income.value,
+      range: statistic?.income.range,
+      review: statistic?.income.review,
+      isGood: statistic?.expenses.isGood
     }
   ];
-  
+
   return (
     <SubscriptionBlocker requiredPlan='demo'>
       <div>
