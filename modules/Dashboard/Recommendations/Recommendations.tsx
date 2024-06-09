@@ -8,15 +8,15 @@ import {useStore} from '@/src/store';
 const Recommendations = () => {
   const {statistic} = useStore();
 
-  const advices = [...statistic.recommendations, ...statistic.optimizations];
+  const advices = [...statistic?.recommendations, ...statistic?.optimizations];
   const list = [
     {
       title: 'Первый клиент',
-      date: statistic.statistic.firstClient
+      date: statistic?.statistic?.firstClient
     },
     {
       title: 'Первая продажа',
-      date: statistic.statistic.firstSale
+      date: statistic?.statistic?.firstSale
     }
   ];
   return (

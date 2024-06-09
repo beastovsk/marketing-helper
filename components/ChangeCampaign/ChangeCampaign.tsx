@@ -45,12 +45,15 @@ export const ChangeCampaignModal = () => {
 
   useEffect(() => {
     if (campaign === null) return;
+    if (campaign.date) {
+      const [startDate, endDate] = campaign.date;
+      return setInitialValues({
+        ...campaign,
+        date: [dayjs(startDate), dayjs(endDate)]
+      });
+    }
 
-    const [startDate, endDate] = campaign.date;
-    setInitialValues({
-      ...campaign,
-      date: [dayjs(startDate), dayjs(endDate)]
-    });
+    setInitialValues(campaign);
   }, [campaign]);
 
   if (isDataLoading) {

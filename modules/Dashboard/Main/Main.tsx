@@ -12,30 +12,31 @@ const Main = () => {
   const cardsList = [
     {
       label: 'Аудитория',
-      description: 'Маркетологи и специалисты по рекламе, использующие ИИ для оптимизации стратегий',
-      review: ' Целесообразно сосредоточиться на крупных агентствах и компаниях с большим маркетинговым бюджетом'
+      description: statistic?.audacity.value,
+      review: statistic?.audacity.review,
+      isGood: statistic?.audacity.isGood
     },
     {
       label: 'Конверсия',
-      description: statistic.conversion.value,
-      review: statistic.conversion.review,
-      isGood: statistic.conversion.isGood
+      description: statistic?.conversion.value,
+      review: statistic?.conversion.review,
+      isGood: statistic?.conversion.isGood
     },
     {
       label: 'ROI',
-      description: statistic.roi.value,
-      review: statistic.roi.review,
-      isGood: statistic.roi.isGood
+      description: statistic?.roi.value,
+      review: statistic?.roi.review,
+      isGood: statistic?.roi.isGood
     },
     {
       label: 'SAS',
       description: (
         <>
-          {statistic.sas.value} ({statistic.sas.rangeForNicheAndChannel})
+          {statistic?.sas.value} ({statistic?.sas.rangeForNicheAndChannel})
         </>
       ),
-      review: statistic.sas.review,
-      isGood: statistic.sas.isGood
+      review: statistic?.sas.review,
+      isGood: statistic?.sas.isGood
     }
   ];
 
@@ -43,12 +44,12 @@ const Main = () => {
     <SubscriptionBlocker requiredPlan='demo'>
       <div>
         <PreloadText className={s.title} elementType='h1'>
-          {statistic.name}
+          {statistic?.name}
         </PreloadText>
         <PreloadText className={s.subtitle} elementType='h2'>
-          {statistic.niche.label}
-          <StatusText success={statistic.niche.isGood} className='ml-2'>
-            ({statistic.niche.review})
+          {statistic?.niche.label}
+          <StatusText success={statistic?.niche.isGood} className='ml-2'>
+            ({statistic?.niche.review})
           </StatusText>
         </PreloadText>
         <div className='grid grid-cols-2 gap-4 md:grid-cols-1 mt-5'>

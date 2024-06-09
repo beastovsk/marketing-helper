@@ -26,8 +26,22 @@ export const Settings = () => {
         <div className='flex flex-col text-sm p-3 border-b'>
           <span>Ниша: {campaign?.niche}</span>
           <span>Продукт: {campaign?.product}</span>
-          <span>Дача начала кампании: {dayjs(campaign?.date[0]).format('DD/MM/YYYY')}</span>
-          <span>Дата завершения кампании: {dayjs(campaign?.date[1]).format('DD/MM/YYYY')}</span>
+          <span className='flex gap-2'>
+            Дача начала кампании:{' '}
+            {campaign?.date?.length ? (
+              dayjs(campaign?.date[0]).format('DD/MM/YYYY')
+            ) : (
+              <p className='text-[#11111160]'>не указано</p>
+            )}
+          </span>
+          <span className='flex gap-2'>
+            Дата завершения кампании:{' '}
+            {campaign?.date?.length ? (
+              dayjs(campaign?.date[1]).format('DD/MM/YYYY')
+            ) : (
+              <p className='text-[#11111160]'>не указано</p>
+            )}
+          </span>
           <span className='flex gap-2'>
             Канал: {campaign?.channel || <p className='text-[#11111160]'>не указано</p>}
           </span>

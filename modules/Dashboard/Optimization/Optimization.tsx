@@ -23,7 +23,7 @@ const Optimization = () => {
             </tr>
           </thead>
           <tbody>
-            {statistic.optimizationChannels.map(({recommendBudget, channel, conversion, review}, i) => (
+            {statistic?.optimizationChannels.map(({recommendBudget, channel, conversion, review}, i) => (
               <tr className='md:text-sm' key={i}>
                 <th>{channel}</th>
                 <th>{formatProductPrice(recommendBudget)}</th>
