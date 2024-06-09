@@ -12,8 +12,9 @@ const Main = () => {
   const cardsList = [
     {
       label: 'Аудитория',
-      description: 'Маркетологи и специалисты по рекламе, использующие ИИ для оптимизации стратегий',
-      review: ' Целесообразно сосредоточиться на крупных агентствах и компаниях с большим маркетинговым бюджетом'
+      description: statistic?.audacity.value,
+      review: statistic?.audacity.review,
+      isGood: statistic?.audacity.isGood
     },
     {
       label: 'Конверсия',
