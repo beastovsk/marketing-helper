@@ -54,7 +54,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
         const {subscriptionPlan, subscriptionExpiresAt, campaign, email, campaignStatistic} = data?.user;
         setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
         setCampaign(campaign);
-
+        console.log(campaignStatistic);
         if (campaignStatistic) {
           setStatistic(JSON.parse(campaignStatistic));
         }

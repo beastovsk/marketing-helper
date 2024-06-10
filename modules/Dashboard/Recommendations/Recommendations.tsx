@@ -30,7 +30,7 @@ const Recommendations = () => {
                 {title}
               </PreloadText>
               <PreloadText elementType='h4' className='text-xl bold mb-3'>
-                ~{date}
+                ~{date} дней
               </PreloadText>
             </div>
           ))}
@@ -40,10 +40,10 @@ const Recommendations = () => {
           <h3 className='text-xl mb-5'>Предложения и рекомендации</h3>
 
           <div className='flex flex-col gap-3'>
-            {advices.map(({value, review}, i) => (
+            {advices.map(({label, review}, i) => (
               <div>
                 <PreloadText elementType='h4' className='text-lg'>
-                  {i + 1}. {value}
+                  {i + 1}. {label}
                 </PreloadText>
                 <PreloadText elementType='p' className='text-[#11111180]'>
                   {review}

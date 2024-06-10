@@ -32,7 +32,13 @@ export const ChangeCampaignModal = () => {
           setCampaign(value);
 
           if (subscriptionInfo?.subscriptionPlan) {
-            getData();
+            getData(null, {
+              onSuccess: (data) => {
+                if (data?.message === 'Успешно сохранено') {
+                  router.push('/dashboard/settings');
+                }
+              }
+            });
             return;
           }
 
