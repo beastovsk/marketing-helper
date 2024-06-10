@@ -20,6 +20,7 @@ import weekYear from 'dayjs/plugin/weekYear';
 import {ChangeSubscriptionModal} from '@/components/ChangeSubscription/ChangeSubscription';
 import Loading from '@/app/loading';
 import {customNotification} from '@/src/helpers/customNotification';
+import {Banner} from '@/components/Banner/Banner';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(advancedFormat);
@@ -80,14 +81,16 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
     return <Loading />;
   }
 
-  if (!statistic) {
-    return (
-      <Empty description='Если вы столкнулись с ошибкой - попробуйте запросить в настройках новую аналитику или напишите в поддержку' />
-    );
-  }
-
   return (
     <ConfigProvider locale={locale} theme={lightTheme}>
+      {!statistic && pathname.split('/').includes('dashboard') ? (
+        <Banner
+          className='mt-1 ml-[300px] lg:ml-0'
+          title='Произошла ошибка'
+          message='Для решения проблемы - обновите данные компании через настройки (запросите данные без изменения). Извиняемся за неудобства!'
+          type='danger'
+        />
+      ) : null}
       {children}
     </ConfigProvider>
   );

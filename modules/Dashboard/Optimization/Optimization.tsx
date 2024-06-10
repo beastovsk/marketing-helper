@@ -4,10 +4,10 @@ import {useStore} from '@/src/store';
 import {SubscriptionBlocker} from '../SubscriptionBlocker/SubscriptionBlocker';
 import s from './Optimization.module.scss';
 import {formatProductPrice} from '@/src/helpers/hooks';
+import {Empty, Skeleton} from 'antd';
 
 const Optimization = () => {
   const {statistic} = useStore();
-  console.log(statistic);
 
   return (
     <SubscriptionBlocker requiredPlan='basic'>

@@ -5,6 +5,7 @@ import s from './Budjet.module.scss';
 import {PreloadText} from '@/components/UI/PreloadText/PreloadText';
 import {StatusText} from '@/components/UI/StatusText/StatusText';
 import {formatProductPrice} from '@/src/helpers/hooks';
+import {Skeleton} from 'antd';
 
 const Budjet = () => {
   const {statistic} = useStore();
@@ -37,10 +38,10 @@ const Budjet = () => {
                 {title}
               </PreloadText>
               <PreloadText elementType='h4' className='text-xl bold mb-3'>
-                {formatProductPrice(amount)}
+                {amount ? formatProductPrice(amount) : <Skeleton active />}
               </PreloadText>
               <PreloadText elementType='p' className='mb-3'>
-                {range} ₽
+                {range ? `${range} ₽` : null}
               </PreloadText>
               <PreloadText elementType='p'>
                 <StatusText success={isGood}>{review}</StatusText>

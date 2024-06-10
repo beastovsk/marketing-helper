@@ -1,7 +1,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-
-const Recommendations = dynamic(() => import('@/modules/Dashboard/Recommendations/Recommendations'));
+import Recommendations from '@/modules/Dashboard/Recommendations/Recommendations';
 
 export default function Page() {
   return <Recommendations />;

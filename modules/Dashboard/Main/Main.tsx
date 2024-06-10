@@ -49,7 +49,7 @@ const Main = () => {
         <PreloadText className={s.subtitle} elementType='h2'>
           {statistic?.niche.label}
           <StatusText success={statistic?.niche.isGood} className='ml-2'>
-            ({statistic?.niche.review})
+            {`(${statistic?.niche.review || 'Данные не получены'})`}
           </StatusText>
         </PreloadText>
         <div className='grid grid-cols-2 gap-4 md:grid-cols-1 mt-5'>
