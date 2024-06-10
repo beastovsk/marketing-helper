@@ -43,19 +43,16 @@ export const Settings = () => {
             )}
           </span>
           <span className='flex gap-2'>
-            Канал: {campaign?.channel || <p className='text-[#11111160]'>не указано</p>}
+            Основной канал: {campaign?.channel || <p className='text-[#11111160]'>не указано</p>}
           </span>
           <span className='flex gap-2'>
-            Просмотры: {campaign?.views || <p className='text-[#11111160]'>не указано</p>}
-          </span>
-          <span className='flex gap-2'>
-            Конверсия: {campaign?.conversion || <p className='text-[#11111160]'>не указано</p>}
+            Цель конверсии: {campaign?.conversion || <p className='text-[#11111160]'>не указано</p>}
           </span>
           <span className='flex gap-2'>
             Расходы: {campaign?.expenses || <p className='text-[#11111160]'>не указано</p>}
           </span>
           <span className='flex gap-2'>
-            Доходы: {campaign?.income || <p className='text-[#11111160]'>не указано</p>}
+            Желаемый доход: {campaign?.income || <p className='text-[#11111160]'>не указано</p>}
           </span>
         </div>
         <h3 className={s.subtitle}>
@@ -65,7 +62,7 @@ export const Settings = () => {
           Изменить пароль <EditButton onClick={() => setOpenResetPassword(true)} />
         </h3>
         <h3 className={s.subtitle}>
-          Подписка: {getTitleOfSubscription(subscriptionInfo?.subscriptionPlan)}{' '}
+          Подписка: {getTitleOfSubscription(subscriptionInfo?.subscriptionPlan)}
           <Link href='/subscription'>
             <EditButton />
           </Link>

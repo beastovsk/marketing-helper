@@ -30,7 +30,7 @@ const Recommendations = () => {
                 {title}
               </PreloadText>
               <PreloadText elementType='h4' className='text-xl bold mb-3'>
-                ~{date} дней
+                ~{date}
               </PreloadText>
             </div>
           ))}

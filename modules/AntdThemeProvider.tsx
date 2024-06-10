@@ -1,6 +1,6 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import {ConfigProvider} from 'antd';
+import {ConfigProvider, Empty} from 'antd';
 import locale from 'antd/locale/ru_RU';
 import {lightTheme} from '@/src/helpers/theme';
 import dayjs from 'dayjs';
@@ -34,7 +34,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const pathname = usePathname();
 
   const [mounted, setMounted] = useState(false);
-  const {setCampaign, setSubscriptionInfo, setStatistic} = useStore();
+  const {setCampaign, setSubscriptionInfo, setStatistic, statistic} = useStore();
   const {mutate, isLoading} = useMutation(GetUser);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
         const {subscriptionPlan, subscriptionExpiresAt, campaign, email, campaignStatistic} = data?.user;
         setSubscriptionInfo({subscriptionPlan, subscriptionExpiresAt});
         setCampaign(campaign);
-        console.log(campaignStatistic);
+
         if (campaignStatistic) {
           setStatistic(JSON.parse(campaignStatistic));
         }
@@ -78,6 +78,12 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
 
   if (!mounted || isLoading) {
     return <Loading />;
+  }
+
+  if (!statistic) {
+    return (
+      <Empty description='Если вы столкнулись с ошибкой - попробуйте запросить в настройках новую аналитику или напишите в поддержку' />
+    );
   }
 
   return (
