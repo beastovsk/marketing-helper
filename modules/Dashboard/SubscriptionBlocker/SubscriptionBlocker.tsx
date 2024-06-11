@@ -5,31 +5,38 @@ import s from './SubscriptionBlocker.module.scss';
 import {ReactElement, useEffect, useState} from 'react';
 import {useStore} from '@/src/store';
 import {getTitleOfSubscription} from '@/src/helpers/util';
+import {useMutation} from 'react-query';
+import {RemoveSubscription} from '@/src/api';
 
 export const SubscriptionBlocker = ({
   children,
   requiredPlan
 }: {
   children: ReactElement;
-  requiredPlan: 'demo' | 'basic' | 'advanced';
+  requiredPlan: 'basic' | 'advanced';
 }) => {
   const {subscriptionInfo} = useStore();
   const [isAvailable, setIsAvailable] = useState(false);
+  const {mutate} = useMutation(RemoveSubscription);
 
   useEffect(() => {
     if (!subscriptionInfo?.subscriptionPlan) return;
 
-    const {subscriptionPlan} = subscriptionInfo;
+    const {subscriptionPlan, subscriptionExpiresAt} = subscriptionInfo;
 
-    if (subscriptionPlan === requiredPlan) setIsAvailable(true);
+    const isSubscriptionValid = new Date(subscriptionExpiresAt) > new Date(); // Проверяем, действительна ли подписка
 
-    if (subscriptionPlan === 'basic' && requiredPlan === 'demo') {
-      setIsAvailable(true);
+    if (isSubscriptionValid) {
+      if (subscriptionPlan === requiredPlan) {
+        return setIsAvailable(true);
+      } else if (subscriptionPlan === 'basic') {
+        return setIsAvailable(true);
+      }
     }
-    if (subscriptionPlan === 'advanced' && (requiredPlan === 'demo' || requiredPlan === 'basic')) {
-      setIsAvailable(true);
-    }
-  }, [subscriptionInfo]);
+
+    mutate();
+    setIsAvailable(false);
+  }, [subscriptionInfo, requiredPlan]);
 
   if (isAvailable) {
     return children;

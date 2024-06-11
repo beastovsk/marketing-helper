@@ -38,7 +38,7 @@ export const AboutUs = () => {
             </div>
           ))}
         </div>
-        <PreloaderImage src={image} alt='' width={300} height={300} className='md:m-auto' />
+        <PreloaderImage src={image} alt='' width={300} height={300} className='md:m-auto md:w-1/2' />
       </div>
     </div>
   );

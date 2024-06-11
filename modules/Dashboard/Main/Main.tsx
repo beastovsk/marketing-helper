@@ -44,7 +44,7 @@ const Main = () => {
   ];
 
   return (
-    <SubscriptionBlocker requiredPlan='demo'>
+    <SubscriptionBlocker requiredPlan='basic'>
       <div>
         <PreloadText className={s.title} elementType='h1'>
           {statistic?.name}

@@ -10,10 +10,9 @@ import PieChart from '@/components/UI/PieChart/PieChart';
 
 const Product = () => {
   const {statistic} = useStore();
-  console.log(statistic);
 
   return (
-    <SubscriptionBlocker requiredPlan='demo'>
+    <SubscriptionBlocker requiredPlan='basic'>
       <div>
         <PreloadText className={s.subtitle} elementType='h2'>
           О продукте

@@ -7,24 +7,19 @@ import Link from 'next/link';
 export const Prices = () => {
   const data = [
     {
-      title: 'Демо',
-      list: ['Прогноз метрик', 'Анализ расходов и прогноз доходов', 'Прогноз первого клиента и первой покупки'],
-      price: '300'
-    },
-    {
       title: 'Базовый',
       list: [
-        'Функционал из демо',
-        'Прогноз конверсии',
-        'Рекомендации по улучшению ROI, CAC',
+        'Подробный анализ вашего продукта',
+        'Полный портрет вашей аудитории',
+        'Анализ минусов и преимуществ',
         'Оптимизация и перераспределение бюджета',
         'Предложения и рекомендации в долгосрочном планировании'
       ],
-      price: '1700'
+      price: '2100'
     },
     {
       title: 'Продвинутый',
-      list: ['Функционал из базового тарифа', 'Личный AI ассистент', 'Бета-доступ к новым фичам'],
+      list: ['Функционал из базового тарифа', 'Личный AI ассистент'],
       price: '3000'
     }
   ];
@@ -34,10 +29,12 @@ export const Prices = () => {
       <h1 className={s.title}>Цены</h1>
 
       <div className='relative'>
-        <div className='text-center gap-5 grid grid-cols-3 md:grid-cols-1'>
+        <div className='text-center gap-5 flex justify-center md:flex-col'>
           {data.map(({title, list, price}) => (
             <div
-              className={`box flex flex-col ${title === 'Базовый' ? 'border-2 border-primary-500 rounded-2xl' : ''}`}
+              className={`box flex flex-col w-1/3 lg:w-full ${
+                title === 'Базовый' ? 'border-2 border-primary-500 rounded-2xl' : ''
+              }`}
             >
               <h2>{title}</h2>
               <div className='my-5'>

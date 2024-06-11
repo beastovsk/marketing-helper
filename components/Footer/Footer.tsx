@@ -60,7 +60,7 @@ export const Footer: FC<FooterProps> = (props) => {
           <div className='opacity-80 w-[200px]'>
             <Logo />
           </div>
-          <div className='flex gap-10 flex-grow justify-center md:justify-start lg:mt-10'>
+          <div className='flex gap-10 flex-grow justify-center md:justify-start lg:mt-10 md:flex-col'>
             {linksList.map(({links, title}, i) => (
               <div key={i} className='w-1/3'>
                 <h2 className='text-lg mb-3 '>{title}</h2>

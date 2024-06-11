@@ -36,7 +36,6 @@ export const ChangeSubscriptionModal = () => {
   };
 
   const options = [
-    {title: 'Демо', value: 'demo', price: 300, description: 'Получить анализ для своей кампании'},
     {title: 'Базовый', value: 'basic', price: 1700, description: 'Получить рекомендации и детальный анализ'},
     {
       title: 'Продвинутый',
@@ -48,13 +47,6 @@ export const ChangeSubscriptionModal = () => {
 
   const isDisabledRadio = (value) => {
     if (value === 'advanced') return true;
-
-    if (value === 'demo') {
-      if (subscriptionInfo?.subscriptionPlan === 'basic' || subscriptionInfo?.subscriptionPlan === 'advance')
-        return true;
-
-      return false;
-    }
 
     if (value === 'basic') {
       if (subscriptionInfo?.subscriptionPlan === 'advance') return true;

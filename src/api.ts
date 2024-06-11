@@ -193,6 +193,19 @@ export const UpdateSubscription = async (data) => {
     return data.json();
   });
 };
+export const RemoveSubscription = async () => {
+  return await fetch(`${API_URL}/api/user/removeSubscription`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`
+    },
+    method: 'POST'
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
 export const confirmSubscription = async (data) => {
   return await fetch(`${API_URL}/api/user/confirmSubscription`, {
     headers: {

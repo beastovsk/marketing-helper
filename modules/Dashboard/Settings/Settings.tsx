@@ -63,10 +63,18 @@ export const Settings = () => {
         </h3>
         <h3 className={s.subtitle}>
           Подписка: {getTitleOfSubscription(subscriptionInfo?.subscriptionPlan)}
-          <Link href='/subscription'>
+          <Link href='/subscription' className='ml-1'>
             <EditButton />
           </Link>
         </h3>
+        <span className='flex gap-2 text-sm'>
+          Действует до:{' '}
+          {subscriptionInfo?.subscriptionExpiresAt ? (
+            dayjs(subscriptionInfo?.subscriptionExpiresAt).format('DD/MM/YYYY')
+          ) : (
+            <p className='text-[#11111160]'>не указано</p>
+          )}
+        </span>
       </div>
 
       <ChangeEmailModal />

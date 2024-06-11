@@ -25,10 +25,12 @@ export const Banner = () => {
           </span>
           <div className={s.buttons}>
             <Link href='/auth'>
-              <Btn>Попробовать</Btn>
+              <Btn className='w-full'>Попробовать</Btn>
             </Link>
             <Link href='#about'>
-              <Btn primary>Подробнее</Btn>
+              <Btn primary className='w-full'>
+                Подробнее
+              </Btn>
             </Link>
           </div>
         </div>
@@ -40,7 +42,7 @@ export const Banner = () => {
           height={500}
           alt=''
           quality={100}
-          className={s.image}
+          className='lg:w-1/2 m-auto'
         />
       </div>
     </div>

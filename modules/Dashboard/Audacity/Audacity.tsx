@@ -13,7 +13,7 @@ const Audacity = () => {
   console.log(statistic);
 
   return (
-    <SubscriptionBlocker requiredPlan='demo'>
+    <SubscriptionBlocker requiredPlan='basic'>
       <div>
         <PreloadText className={s.subtitle} elementType='h2'>
           Портрет аудитории

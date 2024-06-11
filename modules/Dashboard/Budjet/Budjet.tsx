@@ -28,7 +28,7 @@ const Budjet = () => {
   ];
 
   return (
-    <SubscriptionBlocker requiredPlan='demo'>
+    <SubscriptionBlocker requiredPlan='basic'>
       <div>
         <h1 className={s.title}>Бюджет</h1>
         <div className='grid grid-cols-2 md:grid-cols-1 gap-4 mt-5'>
