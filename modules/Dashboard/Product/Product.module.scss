@@ -1,0 +1,9 @@
+.title {
+  @include fluid(font-size, 24px, 28px);
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-top: 20px;
+  @include fluid(font-size, 16px, 22px);
+}
