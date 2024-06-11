@@ -1,8 +1,16 @@
 'use client';
-import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend} from 'chart.js';
-import {Bar} from 'react-chartjs-2';
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
+import {Line} from 'react-chartjs-2';
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 export const Conversion = ({data}) => {
   const config = {
     responsive: true,
@@ -14,7 +22,7 @@ export const Conversion = ({data}) => {
   };
 
   return (
-    <Bar
+    <Line
       options={config}
       data={{
         labels: data.map((item) => item.date),
@@ -24,9 +32,9 @@ export const Conversion = ({data}) => {
             data: data.map((item) => item.value.slice(0, -1)),
             borderColor: '#4880ff',
             backgroundColor: '#8baaf080',
-            borderWidth: 2,
-            borderRadius: 15,
-            borderSkipped: false
+            borderWidth: 2
+            // borderRadius: 15,
+            // borderSkipped: false
           }
         ]
       }}

@@ -5,6 +5,7 @@ import {SubscriptionBlocker} from '../SubscriptionBlocker/SubscriptionBlocker';
 import {useStore} from '@/src/store';
 import {PreloadText} from '@/components/UI/PreloadText/PreloadText';
 import {StatusText} from '@/components/UI/StatusText/StatusText';
+import {Skeleton} from 'antd';
 
 const Main = () => {
   const {statistic} = useStore();
@@ -30,10 +31,12 @@ const Main = () => {
     },
     {
       label: 'SAS',
-      description: (
+      description: statistic ? (
         <>
           {statistic?.sas.value} ({statistic?.sas.rangeForNicheAndChannel})
         </>
+      ) : (
+        <Skeleton.Button active />
       ),
       review: statistic?.sas.review,
       isGood: statistic?.sas.isGood

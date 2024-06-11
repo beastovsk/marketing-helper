@@ -13,6 +13,10 @@ import {useRouter} from 'next/navigation';
 import Loading from '@/app/loading';
 import Link from 'next/link';
 import {getCookie} from 'cookies-next';
+import loader from '../../public/image/loader.json';
+import Image from 'next/image';
+import {Player} from '@lottiefiles/react-lottie-player';
+
 const {RangePicker} = DatePicker;
 
 const dateFormat = 'YYYY/MM/DD';
@@ -65,9 +69,9 @@ export const ChangeCampaignModal = () => {
   if (isDataLoading) {
     return (
       <div className='flex flex-col items-center'>
-        <Loading />
-        <h2>Загрузка новых данных</h2>
-        <p className='text-gray-600'>Пожалуйста подождите</p>
+        <Player src={loader} className='' loop autoplay />
+        <h2>Генерация новых данных...</h2>
+        <p className='text-gray-300'>Пожалуйста подождите</p>
       </div>
     );
   }
