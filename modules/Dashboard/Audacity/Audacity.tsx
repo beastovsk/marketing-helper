@@ -5,7 +5,7 @@ import {SubscriptionBlocker} from '../SubscriptionBlocker/SubscriptionBlocker';
 import {useStore} from '@/src/store';
 import {PreloadText} from '@/components/UI/PreloadText/PreloadText';
 import {StatusText} from '@/components/UI/StatusText/StatusText';
-import {Skeleton} from 'antd';
+import {Empty, Skeleton} from 'antd';
 import PieChart from '@/components/UI/PieChart/PieChart';
 
 const Audacity = () => {
@@ -45,13 +45,17 @@ const Audacity = () => {
           <div className='box'>
             <h1 className='text-xl mb-5'>Пол</h1>
             <div className='w-3/4 m-auto'>
-              <PieChart
-                data={Object.entries(statistic?.demographic.sex).map(([key, value]) => ({
-                  label: key,
-                  // @ts-ignore
-                  value: Number(value.slice(0, -1))
-                }))}
-              />
+              {statistic ? (
+                <PieChart
+                  data={Object.entries(statistic?.demographic.sex).map(([key, value]) => ({
+                    label: key,
+                    // @ts-ignore
+                    value: Number(value.slice(0, -1))
+                  }))}
+                />
+              ) : (
+                <Empty description='Нет данных' />
+              )}
             </div>
           </div>
           <div className='box'>
