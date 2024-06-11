@@ -27,11 +27,13 @@ const Audacity = () => {
               <StatusText success={statistic?.audacity.isGood}>{statistic?.audacity.review}</StatusText>
             </PreloadText>
             <h4 className='text-lg mt-3'>Откуда могут узнать о продукте?</h4>
-            {statistic?.demographic.sourceOfInformation.map((label) => (
-              <PreloadText elementType='p' className='text-md'>
-                - {label}
-              </PreloadText>
-            ))}
+            {statistic
+              ? statistic?.demographic.sourceOfInformation.map((label) => (
+                  <PreloadText elementType='p' className='text-md'>
+                    - {label}
+                  </PreloadText>
+                ))
+              : null}
           </div>
         </div>
 
