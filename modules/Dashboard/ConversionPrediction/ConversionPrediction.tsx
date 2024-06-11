@@ -15,7 +15,7 @@ const ConversionPrediction = () => {
       <div>
         <h3 className={s.subtitle}>Прогноз конверсии</h3>
         <h4 className='flex text-lg gap-1 mt-2'>
-          Цель конверсии - <PreloadText className='text-success-500'>{statistic.conversionTarget}</PreloadText>
+          Цель конверсии - <PreloadText className='text-success-500'>{statistic?.conversionTarget}</PreloadText>
         </h4>
         <div className='box mt-5 flex flex-col gap-5'>
           <Conversion data={statistic?.conversion.analytics || []} />

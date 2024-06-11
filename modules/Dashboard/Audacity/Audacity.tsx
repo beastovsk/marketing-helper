@@ -39,14 +39,14 @@ const Audacity = () => {
           <div className='box'>
             <h1 className='text-xl mb-5'>Возрастная группа</h1>
             <div className='w-3/4 m-auto'>
-              <PieChart data={statistic.demographic.ageGroup} />
+              <PieChart data={statistic?.demographic.ageGroup} />
             </div>
           </div>
           <div className='box'>
             <h1 className='text-xl mb-5'>Пол</h1>
             <div className='w-3/4 m-auto'>
               <PieChart
-                data={Object.entries(statistic.demographic.sex).map(([key, value]) => ({
+                data={Object.entries(statistic?.demographic.sex).map(([key, value]) => ({
                   label: key,
                   // @ts-ignore
                   value: Number(value.slice(0, -1))
@@ -57,31 +57,31 @@ const Audacity = () => {
           <div className='box'>
             <h1 className='text-xl mb-5'>Покупательские качества</h1>
             <div className='w-3/4 m-auto'>
-              <PieChart data={statistic.demographic.buyingBehavior} />
+              <PieChart data={statistic?.demographic.buyingBehavior} />
             </div>
           </div>
           <div className='box'>
             <h1 className='text-xl mb-5'>География</h1>
             <div className='w-3/4 m-auto'>
-              <PieChart data={statistic.demographic.geography} />
+              <PieChart data={statistic?.demographic.geography} />
             </div>
           </div>
           <div className='box'>
             <h1 className='text-xl mb-5'>Интересы</h1>
             <div className='w-3/4 m-auto'>
-              <PieChart data={statistic.demographic.interests} />
+              <PieChart data={statistic?.demographic.interests} />
             </div>
           </div>
           <div className='box'>
             <h1 className='text-xl mb-5'>Профессии</h1>
             <div className='w-3/4 m-auto'>
-              <PieChart data={statistic.demographic.profession} />
+              <PieChart data={statistic?.demographic.profession} />
             </div>
           </div>
           <div className='box'>
             <h1 className='text-xl mb-5'>Соц. сети для привлечения</h1>
             <div className='w-3/4 m-auto'>
-              <PieChart data={statistic.demographic.socialNetworks} />
+              <PieChart data={statistic?.demographic.socialNetworks} />
             </div>
           </div>
         </div>
