@@ -21,13 +21,13 @@ const Audacity = () => {
         <div className='mt-5'>
           <div className='box flex-grow'>
             <PreloadText elementType='h1' className='text-xl'>
-              {statistic.audacity.value}
+              {statistic?.audacity.value}
             </PreloadText>
             <PreloadText elementType='h4' className='text-lg mt-3'>
-              <StatusText success={statistic.audacity.isGood}>{statistic.audacity.review}</StatusText>
+              <StatusText success={statistic?.audacity.isGood}>{statistic?.audacity.review}</StatusText>
             </PreloadText>
             <h4 className='text-lg mt-3'>Откуда могут узнать о продукте?</h4>
-            {statistic.demographic.sourceOfInformation.map((label) => (
+            {statistic?.demographic.sourceOfInformation.map((label) => (
               <PreloadText elementType='p' className='text-md'>
                 - {label}
               </PreloadText>
