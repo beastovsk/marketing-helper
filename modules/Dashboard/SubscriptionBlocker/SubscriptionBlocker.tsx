@@ -24,18 +24,18 @@ export const SubscriptionBlocker = ({
 
     const {subscriptionPlan, subscriptionExpiresAt} = subscriptionInfo;
 
-    const isSubscriptionValid = new Date(subscriptionExpiresAt) > new Date(); // Проверяем, действительна ли подписка
+    const isSubscriptionValid = new Date(subscriptionExpiresAt) >= new Date(); // Проверяем, действительна ли подписка
 
     if (isSubscriptionValid) {
       if (subscriptionPlan === requiredPlan) {
         return setIsAvailable(true);
-      } else if (subscriptionPlan === 'basic') {
+      } else if (subscriptionPlan === 'advanced') {
         return setIsAvailable(true);
       }
+    } else {
+      mutate();
+      setIsAvailable(false);
     }
-
-    mutate();
-    setIsAvailable(false);
   }, [subscriptionInfo, requiredPlan]);
 
   if (isAvailable) {

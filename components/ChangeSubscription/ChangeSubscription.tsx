@@ -36,7 +36,7 @@ export const ChangeSubscriptionModal = () => {
   };
 
   const options = [
-    {title: 'Базовый', value: 'basic', price: 1700, description: 'Получить рекомендации и детальный анализ'},
+    {title: 'Базовый', value: 'basic', price: 2100, description: 'Получить рекомендации и детальный анализ'},
     {
       title: 'Продвинутый',
       value: 'advanced',
@@ -44,16 +44,6 @@ export const ChangeSubscriptionModal = () => {
       description: 'В разработке добавления ИИ ассистента'
     }
   ];
-
-  const isDisabledRadio = (value) => {
-    if (value === 'advanced') return true;
-
-    if (value === 'basic') {
-      if (subscriptionInfo?.subscriptionPlan === 'advance') return true;
-
-      return false;
-    }
-  };
 
   return (
     <Form
@@ -66,7 +56,7 @@ export const ChangeSubscriptionModal = () => {
         <Radio.Group>
           <Space direction='vertical'>
             {options.map(({description, price, title, value}) => (
-              <Radio value={value} className='w-full mb-3' disabled={isDisabledRadio(value)}>
+              <Radio value={value} className='w-full mb-3'>
                 <div className='w-full ml-2'>
                   <div className='flex gap-2 items-center'>
                     <h2 className='text-xl'>{title}</h2>
