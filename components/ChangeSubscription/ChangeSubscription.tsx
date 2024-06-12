@@ -36,12 +36,12 @@ export const ChangeSubscriptionModal = () => {
   };
 
   const options = [
-    {title: 'Базовый', value: 'basic', price: 2100, description: 'Получить рекомендации и детальный анализ'},
+    {title: 'Базовый', value: 'basic', price: 2100, description: 'Получить статистику, рекомендации и детальный анализ'},
     {
       title: 'Продвинутый',
       value: 'advanced',
       price: 3000,
-      description: 'В разработке добавления ИИ ассистента'
+      description: 'Статистика и личный ассистент'
     }
   ];
 
