@@ -29,7 +29,7 @@ export const Conversion = ({data}) => {
         datasets: [
           {
             label: 'Конверсия (%)',
-            data: data.map((item) => item.value.slice(0, -1)),
+            data: data.map((item) => item.value),
             borderColor: '#4880ff',
             backgroundColor: '#8baaf080',
             borderWidth: 2
