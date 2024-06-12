@@ -68,6 +68,10 @@ const Assistant = () => {
     localStorage.setItem('messages', JSON.stringify([...messages, welcomeMessage]));
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('messages', JSON.stringify(messages));
+  }, [messages]);
+
   return (
     <SubscriptionBlocker requiredPlan='advanced'>
       <div className='p-4 border border-gray-200 rounded-lg'>
