@@ -8,7 +8,7 @@ import 'dayjs/locale/ru';
 import {useMutation, useQuery} from 'react-query';
 import {GetUser, confirmSubscription} from '@/src/api';
 import {useParams, usePathname, useRouter, useSearchParams} from 'next/navigation';
-import {deleteCookie} from 'cookies-next';
+import {deleteCookie, getCookie} from 'cookies-next';
 import {ChangeCampaignModal} from '@/components/ChangeCampaign/ChangeCampaign';
 import {useStore} from '@/src/store';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
@@ -37,6 +37,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
   const [mounted, setMounted] = useState(false);
   const {setCampaign, setSubscriptionInfo, setStatistic, statistic} = useStore();
   const {mutate, isLoading} = useMutation(GetUser);
+  const hasToken = !!getCookie('token');
 
   useEffect(() => {
     setMounted(true);
@@ -45,7 +46,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
 
     mutate(null, {
       onSuccess: (data) => {
-        if (!data.user) {
+        if (!data.user || !hasToken) {
           router.push('/auth');
           localStorage.removeItem('email');
           deleteCookie('token');
