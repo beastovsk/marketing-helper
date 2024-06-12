@@ -33,7 +33,7 @@ export default function Btn<E extends ElementType = typeof defaultElement>({
 
   return (
     <TagName
-      disabled={disabled}
+      disabled={disabled || loading}
       className={`${disabled ? s.disabled : ''} ${danger ? s.danger : ''} ${primary ? s.primary : ''} ${
         s.button
       } ${className}`}

@@ -220,3 +220,17 @@ export const confirmSubscription = async (data) => {
     return data.json();
   });
 };
+export const sendMessage = async (question) => {
+  return await fetch(`${API_URL}/api/page/sendMessage`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`
+    },
+    method: 'POST',
+    body: JSON.stringify(question)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
