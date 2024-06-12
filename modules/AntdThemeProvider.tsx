@@ -45,7 +45,7 @@ function AntdThemeProvider({children}: {children: React.ReactNode}) {
 
     mutate(null, {
       onSuccess: (data) => {
-        if (!data) {
+        if (!data.user) {
           router.push('/auth');
           localStorage.removeItem('email');
           deleteCookie('token');
