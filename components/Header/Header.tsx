@@ -22,7 +22,7 @@ export const Header: FC<HeaderProps> = (props) => {
           <Btn className='md:w-full'>Перейти в панель</Btn>
         </Link>
       ) : null}
-      <Link href='https:t.me/beastovsk' target='_blank'>
+      <Link href='https://t.me/marketing_helper_ai' target='_blank'>
         <Btn primary>Поддержка</Btn>
       </Link>
     </div>
