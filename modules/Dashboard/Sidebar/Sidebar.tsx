@@ -45,7 +45,7 @@ export const Sidebar: FC<SidebarProps> = () => {
       label: 'Ассистент',
       icon: <UserOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
       href: '/dashboard/assistant',
-      isAvialable: subscriptionInfo.subscriptionPlan === 'advanced'
+      isAvialable: subscriptionInfo?.subscriptionPlan === 'advanced'
     },
     {
       label: 'Настройки',
