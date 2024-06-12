@@ -26,15 +26,17 @@ const Assistant = () => {
       {
         onSuccess: (data) => {
           if (!data) {
-            return localStorage.setItem(
-              'messages',
-              JSON.stringify([
-                ...messages,
-                {text: 'Не удалось загрузить ответ на ваш вопрос, попробуйте задать его еще раз', sender: 'bot'}
-              ])
-            );
+            const errorMessage = {
+              text: 'Не удалось загрузить ответ на ваш вопрос, попробуйте задать его еще раз',
+              sender: 'bot'
+            };
+            setMessages((prevMessages) => [...prevMessages, errorMessage]);
+            return localStorage.setItem('messages', JSON.stringify([...messages, errorMessage]));
           }
-          return localStorage.setItem('messages', JSON.stringify([...messages, {text: data?.answer, sender: 'bot'}]));
+
+          const answerMessage = {text: data?.answer, sender: 'bot'};
+          setMessages((prevMessages) => [...prevMessages, answerMessage]);
+          localStorage.setItem('messages', JSON.stringify([...messages, answerMessage]));
         }
       }
     );
