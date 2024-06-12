@@ -21,7 +21,23 @@ const Assistant = () => {
     const newMessage = {text: inputValue, sender: 'user'};
     setMessages((prevMessages) => [...prevMessages, newMessage]);
     localStorage.setItem('messages', JSON.stringify([...messages, newMessage]));
-    mutate({question: inputValue});
+    mutate(
+      {question: inputValue},
+      {
+        onSuccess: (data) => {
+          if (!data) {
+            return localStorage.setItem(
+              'messages',
+              JSON.stringify([
+                ...messages,
+                {text: 'Не удалось загрузить ответ на ваш вопрос, попробуйте задать его еще раз', sender: 'bot'}
+              ])
+            );
+          }
+          return localStorage.setItem('messages', JSON.stringify([...messages, {text: data?.answer, sender: 'bot'}]));
+        }
+      }
+    );
 
     setInputValue('');
     scrollToBottom();
@@ -83,7 +99,7 @@ const Assistant = () => {
             onPressEnter={handleMessageSubmit}
             maxLength={200}
           />
-          <Btn onClick={handleMessageSubmit} loading={isLoading}>
+          <Btn onClick={handleMessageSubmit} disabled={isLoading}>
             Отправить
           </Btn>
         </div>
