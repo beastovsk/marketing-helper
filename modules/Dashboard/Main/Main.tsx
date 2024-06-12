@@ -6,6 +6,7 @@ import {useStore} from '@/src/store';
 import {PreloadText} from '@/components/UI/PreloadText/PreloadText';
 import {StatusText} from '@/components/UI/StatusText/StatusText';
 import {Skeleton} from 'antd';
+import {formatProductPrice} from '@/src/helpers/hooks';
 
 const Main = () => {
   const {statistic} = useStore();
@@ -33,7 +34,7 @@ const Main = () => {
       label: 'SAS',
       description: statistic ? (
         <>
-          {statistic?.sas.value} ({statistic?.sas.rangeForNicheAndChannel})
+          {formatProductPrice(statistic?.sas.value)} ({statistic?.sas.rangeForNicheAndChannel} ₽)
         </>
       ) : (
         <Skeleton.Button active />

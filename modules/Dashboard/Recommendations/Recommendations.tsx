@@ -39,7 +39,9 @@ const Recommendations = () => {
               </PreloadText>
               <PreloadText elementType='h4' className='text-xl bold mb-3'>
                 ~
-                {date ?? (
+                {date ? (
+                  `${date} дней`
+                ) : (
                   <>
                     <Skeleton.Button className='ml-1' active /> дней
                   </>
