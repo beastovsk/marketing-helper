@@ -1,7 +1,7 @@
-import {getCookie} from 'cookies-next';
+import {deleteCookie, getCookie} from 'cookies-next';
 
-// const API_URL = 'http://localhost:3005';
-const API_URL = 'https://marketing-helper-server.onrender.com';
+const API_URL = 'http://localhost:3005';
+// const API_URL = 'https://marketing-helper-server.onrender.com';
 export const LoginRequest = async (data) => {
   return await fetch(`${API_URL}/api/auth/login`, {
     headers: {
@@ -127,7 +127,11 @@ export const GetUser = async () => {
     },
     method: 'GET'
   }).then((data) => {
-    if (!data.ok) return;
+    if (!data.ok) {
+      localStorage.removeItem('email');
+      deleteCookie('token');
+      return;
+    }
     return data.json();
   });
 };
