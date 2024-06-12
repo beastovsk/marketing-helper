@@ -71,7 +71,7 @@ const Assistant = () => {
   return (
     <SubscriptionBlocker requiredPlan='advanced'>
       <div className='p-4 border border-gray-200 rounded-lg'>
-        <div className='mb-4 p-5 h-80 overflow-auto bg-white rounded-lg'>
+        <div className='mb-4 p-5 h-[70vh] overflow-auto bg-white rounded-lg'>
           {messages.map((message, index) => (
             <div
               key={index}
