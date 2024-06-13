@@ -20,7 +20,7 @@ const Product = () => {
         <div className='mt-5'>
           <div className='box flex-grow'>
             <PreloadText elementType='h1' className='text-xl'>
-              {statistic?.audacity.review}
+              {statistic?.product.review}
             </PreloadText>
 
             <h4 className='text-lg mt-3'>Преимущества</h4>

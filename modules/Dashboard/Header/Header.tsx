@@ -33,6 +33,7 @@ export const Header: FC<HeaderProps> = () => {
           deleteCookie('username');
           setCampaign(null);
           setSubscriptionInfo(null);
+          localStorage.removeItem('messages');
         }}
       >
         <LogoutOutlined className='text-2xl cursor-pointer' color='#111' />

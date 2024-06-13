@@ -13,7 +13,7 @@ const Optimization = () => {
     <SubscriptionBlocker requiredPlan='basic'>
       <div className='box'>
         <h3 className='text-xl mb-5'>Оптимизация расходов</h3>
-        <table className='w-full border-spacing-5 border-separate'>
+        <table className='w-full border-spacing-5 border-separate md:overflow-x-auto'>
           <thead>
             <tr>
               <th>Канал</th>

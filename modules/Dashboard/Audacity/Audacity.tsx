@@ -37,10 +37,10 @@ const Audacity = () => {
           </div>
         </div>
 
-        <div className='grid grid-cols-2 gap-4 md:grid-cols-2 mt-5'>
+        <div className='grid grid-cols-2 gap-4 md:grid-cols-1 mt-5'>
           <div className='box'>
             <h1 className='text-xl mb-5'>Возрастная группа</h1>
-            <div className='w-3/4 m-auto'>
+            <div className='w-3/4 md:w-full m-auto'>
               <PieChart data={statistic?.demographic.ageGroup} />
             </div>
           </div>

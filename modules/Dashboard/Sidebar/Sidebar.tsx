@@ -88,6 +88,7 @@ export const Sidebar: FC<SidebarProps> = () => {
           deleteCookie('username');
           setCampaign(null);
           setSubscriptionInfo(null);
+          localStorage.removeItem('messages');
         }}
       >
         <LogoutOutlined className='text-2xl cursor-pointer ' color='#111' />

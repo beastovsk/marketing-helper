@@ -95,7 +95,7 @@ const Assistant = () => {
           </div>
           {/* Этот div используется для прокрутки вниз */}
         </div>
-        <div className='flex'>
+        <div className='flex md:flex-col md:gap-2'>
           <Input
             size='large'
             className='flex-1 mr-2 border-2 border-white'
