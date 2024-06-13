@@ -31,7 +31,7 @@ const Main = () => {
       isGood: statistic?.roi.isGood
     },
     {
-      label: 'SAS',
+      label: 'CAC',
       description: statistic ? (
         <>
           {formatProductPrice(statistic?.sas.value)} ({statistic?.sas.rangeForNicheAndChannel} ₽)
