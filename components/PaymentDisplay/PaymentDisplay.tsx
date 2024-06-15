@@ -24,16 +24,15 @@ export const PaymentDisplay = () => {
     if (paymentStatus === 'success') {
       const uuid = localStorage.getItem('uuid');
       const plan = localStorage.getItem('plan');
+      const payment = localStorage.getItem('payment');
       setStatus('success');
 
       confirmPayment(
-        {uuid, plan},
+        {uuid, plan, payment},
         {
           onSuccess: (data) => {
             if (data.status === 'paid') {
               getData();
-              //   router.push('/dashboard');
-              //   router.refresh();
             }
           }
         }
