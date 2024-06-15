@@ -14,7 +14,7 @@ import Btn from '../UI/Btn/Btn';
 export const PaymentDisplay = () => {
   const router = useRouter();
   const [status, setStatus] = useState('success');
-  const {mutate: confirmPayment, isLoading} = useMutation(confirmSubscription);
+  const {mutate: confirmPayment, isLoading, isSuccess} = useMutation(confirmSubscription);
   const {mutate: getData, isLoading: isDataLoading} = useMutation(StatisticCampaign);
   const title = status ? (status === 'success' ? 'Благодарим за покупку!' : 'Произошла проблема во время оплаты') : '';
   const searchParams = useSearchParams();
@@ -39,7 +39,7 @@ export const PaymentDisplay = () => {
       );
     }
 
-    if (paymentStatus === 'failed') {
+    if (paymentStatus === 'failed' || !isSuccess) {
       setStatus('failed');
     }
   }, []);
