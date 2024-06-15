@@ -1,7 +1,7 @@
 'use client';
 
 import Btn from '@/components/UI/Btn/Btn';
-import {Form, Modal, Radio, Select, Space} from 'antd';
+import {Form, Modal, Radio, Select, Space, Tooltip} from 'antd';
 import {useMutation} from 'react-query';
 import {customNotification} from '@/src/helpers/customNotification';
 
@@ -12,6 +12,7 @@ import {ChangeCampaign, UpdateSubscription} from '@/src/api';
 import {useEffect, useState} from 'react';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
+import {formatProductPrice} from '@/src/helpers/hooks';
 
 export const ChangeSubscriptionModal = () => {
   const router = useRouter();
@@ -36,12 +37,19 @@ export const ChangeSubscriptionModal = () => {
   };
 
   const options = [
-    {title: 'Базовый', value: 'basic', price: 2100, description: 'Получить статистику, рекомендации и детальный анализ'},
+    {
+      title: 'Базовый',
+      value: 'basic',
+      price: 2100,
+      description: 'Полный доступ к платформе',
+      disabled: subscriptionInfo?.subscriptionPlan === 'basic' || subscriptionInfo?.subscriptionPlan === 'advanced'
+    },
     {
       title: 'Продвинутый',
       value: 'advanced',
       price: 3000,
-      description: 'Статистика и личный ассистент'
+      description: 'Полный доступ к платформе и 24/7 личный ассистент',
+      disabled: subscriptionInfo?.subscriptionPlan === 'advanced'
     }
   ];
 
@@ -49,36 +57,62 @@ export const ChangeSubscriptionModal = () => {
     <Form
       layout='vertical'
       onFinish={onFinish}
-      initialValues={{subscriptionPlan: subscriptionInfo?.subscriptionPlan || 'basic'}}
+      initialValues={{
+        subscriptionPlan: subscriptionInfo?.subscriptionPlan === 'basic' ? 'advanced' : '',
+        payment: 'crypto'
+      }}
       requiredMark={false}
     >
-      <Form.Item label='Выберите желаемый план' name='subscriptionPlan'>
+      <Form.Item className='flex px-5 md:ml-5' label='Желаемый план' name='subscriptionPlan'>
         <Radio.Group>
           <Space direction='vertical'>
-            {options.map(({description, price, title, value}) => (
-              <Radio value={value} className='w-full mb-3'>
-                <div className='w-full ml-2'>
-                  <div className='flex gap-2 items-center'>
-                    <h2 className='text-xl'>{title}</h2>
-                    <p className='text-lg text-primary-500'>({price} RUB)</p>
+            {options.map(({description, price, title, value, disabled}) => (
+              <Tooltip
+                title={
+                  <div>
+                    <p>{description}</p>
+                    <span>{formatProductPrice(price)}</span>
                   </div>
-                  <div>{description}</div>
-                </div>
-              </Radio>
+                }
+              >
+                <Radio value={value} className='w-full' disabled={disabled}>
+                  {title}
+                </Radio>
+              </Tooltip>
             ))}
           </Space>
         </Radio.Group>
       </Form.Item>
-      <Space>
-        <Link href={backUrl}>
-          <Btn primary className='mt-2 flex justify-center m-auto'>
+
+      <Form.Item className='flex px-5 md:ml-5' label='Способ оплаты' name='payment'>
+        <Radio.Group>
+          <Space direction='vertical'>
+            <Tooltip title='В процессе добавления'>
+              <Radio value='card' className='w-max' disabled>
+                <span>Банковская карта (Visa, МИР, MasterCard), SberPay</span>
+              </Radio>
+            </Tooltip>
+            <Radio value='crypto' className='w-full'>
+              Криптовалюта (USDT, USDC, BTC)
+            </Radio>
+          </Space>
+        </Radio.Group>
+      </Form.Item>
+      <div className='flex flex-col px-5 md:w-3/4 md:m-auto'>
+        <Link href={backUrl} className='w-full'>
+          <Btn primary className='mt-2 flex w-full justify-center m-auto'>
             Вернуться назад
           </Btn>
         </Link>
-        <Btn className='mt-2 flex justify-center m-auto' htmlTypeButton='submit' loading={isLoading}>
+        <Btn
+          className='mt-2 flex justify-center m-auto w-full'
+          htmlTypeButton='submit'
+          loading={isLoading}
+          disabled={subscriptionInfo?.subscriptionPlan === 'advanced'}
+        >
           Далее
         </Btn>
-      </Space>
+      </div>
     </Form>
   );
 };

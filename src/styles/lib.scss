@@ -9,6 +9,15 @@
   label {
     color: #11111180 !important;
   }
+
+  @media screen and (max-width: $breakpoint-lg) {
+    height: max-content;
+    flex: 1;
+  }
+}
+
+.ant-row {
+  display: block;
 }
 
 .ant-picker {
