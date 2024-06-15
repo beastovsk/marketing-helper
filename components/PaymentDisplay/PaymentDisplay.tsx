@@ -24,7 +24,7 @@ export const PaymentDisplay = () => {
     if (paymentStatus === 'success') {
       const uuid = localStorage.getItem('uuid');
       const plan = localStorage.getItem('plan');
-      const payment = localStorage.getItem('payment');
+      const payment = localStorage.getItem('paymentType');
       setStatus('success');
 
       confirmPayment(
