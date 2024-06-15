@@ -59,7 +59,7 @@ export const ChangeSubscriptionModal = () => {
       layout='vertical'
       onFinish={onFinish}
       initialValues={{
-        subscriptionPlan: subscriptionInfo?.subscriptionPlan === 'basic' ? 'advanced' : '',
+        subscriptionPlan: subscriptionInfo?.subscriptionPlan ?? 'advanced',
         payment: 'crypto'
       }}
       requiredMark={false}
