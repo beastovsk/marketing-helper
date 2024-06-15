@@ -31,7 +31,7 @@ export const ChangeSubscriptionModal = () => {
         customNotification('info', 'top', 'Перенаправляем на оплату');
 
         setTimeout(() => {
-          router.push(data.payment === 'crypto' ? result.link : result.confirmation.confirmation_url);
+          router.push(value.payment === 'crypto' ? result.link : result.confirmation.confirmation_url);
         }, 2000);
       }
     });
