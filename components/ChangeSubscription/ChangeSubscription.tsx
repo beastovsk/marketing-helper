@@ -26,11 +26,12 @@ export const ChangeSubscriptionModal = () => {
         const {result} = data;
         localStorage.setItem('plan', value.subscriptionPlan);
         localStorage.setItem('uuid', result.uuid);
+        localStorage.setItem('paymentType', value.payment);
 
         customNotification('info', 'top', 'Перенаправляем на оплату');
 
         setTimeout(() => {
-          router.push(result.link);
+          router.push(data.payment === 'crypto' ? result.link : result.confirmation.confirmation_url);
         }, 2000);
       }
     });
