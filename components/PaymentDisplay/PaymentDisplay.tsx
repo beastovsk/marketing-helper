@@ -39,7 +39,7 @@ export const PaymentDisplay = () => {
       );
     }
 
-    if (paymentStatus === 'failed' || !isSuccess) {
+    if (paymentStatus === 'failed') {
       setStatus('failed');
     }
   }, []);
@@ -52,7 +52,7 @@ export const PaymentDisplay = () => {
     <div className='flex flex-col'>
       <Result status={status === 'failed' ? 'error' : 'success'} title={title} />
       <Link href='/dashboard'>
-        <Btn>Вернуться</Btn>
+        <Btn loading={isDataLoading}>Вернуться</Btn>
       </Link>
     </div>
   );
