@@ -25,7 +25,7 @@ export const ChangeSubscriptionModal = () => {
       onSuccess: (data) => {
         const {result} = data;
         localStorage.setItem('plan', value.subscriptionPlan);
-        localStorage.setItem('uuid', result.uuid);
+        localStorage.setItem('uuid', value.payment === 'crypto' ? result.uuid : result.id);
         localStorage.setItem('paymentType', value.payment);
 
         customNotification('info', 'top', 'Перенаправляем на оплату');
