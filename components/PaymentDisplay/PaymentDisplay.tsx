@@ -31,8 +31,11 @@ export const PaymentDisplay = () => {
         {uuid, plan, payment},
         {
           onSuccess: (data) => {
-            if (data.status === 'paid') {
+            if (data.status === 'paid' || data.status === 'succeeded') {
               getData();
+            }
+            if (data?.paid === false) {
+              setStatus('failed');
             }
           }
         }
@@ -44,7 +47,7 @@ export const PaymentDisplay = () => {
     }
   }, []);
 
-  if (!status || isLoading) {
+  if (isLoading) {
     <Loading />;
   }
 
