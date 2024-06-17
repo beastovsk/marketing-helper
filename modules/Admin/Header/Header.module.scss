@@ -1,0 +1,10 @@
+.header {
+  @include fluid(padding-top, 10px, 20px);
+  @include fluid(padding-bottom, 10px, 20px);
+  @include fluid(padding-right, 10px, 20px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+}
