@@ -1,10 +1,10 @@
 'use client';
 
 import Loading from '@/app/loading';
-import {getAdminStatistic} from '@/src/api';
 import {useEffect} from 'react';
-import {useMutation, useQuery} from 'react-query';
+import {useMutation} from 'react-query';
 import {useStore} from '../store';
+import {getAdminStatistic} from '@/src/api';
 
 export const AdminProvider = ({children}) => {
   const {statistic, setStatistic} = useStore();
