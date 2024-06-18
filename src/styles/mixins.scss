@@ -70,7 +70,7 @@ $redGradient: linear-gradient(91.42deg, #ff3e3e 0%, #ff6969 100%), #1b1b1b;
   max-width: $container-lg;
   padding-left: $p;
   padding-right: $p;
-  margin: auto;
+  margin: 0 auto;
 
   @media screen and (max-width: $breakpoint-lg) {
     max-width: $container-md;
