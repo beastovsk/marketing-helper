@@ -288,3 +288,65 @@ export const removeClient = async (value) => {
     return data.json();
   });
 };
+export const getAllArticles = async () => {
+  return await fetch(`${API_URL}/api/article/getAllArticles`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const getArticleById = async (id) => {
+  return await fetch(`${API_URL}/api/article/getArticleById?id=${id}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const deleteArticle = async (id) => {
+  return await fetch(`${API_URL}/api/article/deleteArticle?id=${id}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST'
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const updateArticle = async (data) => {
+  return await fetch(`${API_URL}/api/article/updateArticle`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const createArticle = async (data) => {
+  return await fetch(`${API_URL}/api/article/createArticle`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};

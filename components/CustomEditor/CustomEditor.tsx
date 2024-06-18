@@ -10,15 +10,16 @@ type CustomEditorProps = {
 };
 
 export const CustomEditor = ({propsValue, getValue}: CustomEditorProps) => {
-  const [value, setValue] = useState(propsValue || '');
-
-  const handleChange = (e) => {
-    setValue(e);
-  };
+  const [value, setValue] = useState<string | undefined>(propsValue); // Используем тип string | undefined для правильного обновления
 
   useEffect(() => {
-    getValue(value);
-  }, [value]);
+    setValue(propsValue); // Обновляем значение value при изменении propsValue
+  }, [propsValue]);
 
-  return <ReactQuill theme='snow' className={s.editor} value={value} onChange={handleChange} />;
+  const handleChange = (content: string) => {
+    setValue(content);
+    getValue(content); // Вызываем функцию getValue для передачи значения наверх
+  };
+
+  return <ReactQuill theme='snow' className={s.editor} value={value || ''} onChange={handleChange} />;
 };

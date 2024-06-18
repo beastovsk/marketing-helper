@@ -11,12 +11,17 @@ export const AdminProvider = ({children}) => {
   const {mutate, isLoading, isSuccess} = useMutation(getAdminStatistic);
 
   useEffect(() => {
+    if (!sessionStorage.getItem('otp')) return
     mutate(null, {
       onSuccess: (data) => {
         setStatistic(data);
       }
     });
   }, []);
+
+  if (!sessionStorage.getItem('otp')) {
+    return <div>Ожидание кода</div>
+  }
 
   if (isLoading || !statistic) {
     return <Loading />;
