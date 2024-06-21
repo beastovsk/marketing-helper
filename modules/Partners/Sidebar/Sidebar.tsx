@@ -2,7 +2,6 @@
 
 import {
   FileTextOutlined,
-  GlobalOutlined,
   HomeOutlined,
   LogoutOutlined,
   SettingOutlined,
@@ -28,25 +27,19 @@ export const Sidebar: FC<SidebarProps> = () => {
     {
       label: 'Главная',
       icon: <HomeOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
-      href: '/admin',
+      href: '/partner',
       isAvialable: true
     },
     {
-      label: 'Клиенты',
-      icon: <TeamOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
-      href: '/admin/clients',
-      isAvialable: true
-    },
-    {
-      label: 'Партнеры',
-      icon: <GlobalOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
-      href: '/admin/partners',
-      isAvialable: true
-    },
-    {
-      label: 'Статьи',
+      label: 'Материалы',
       icon: <FileTextOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
-      href: '/admin/articles',
+      href: '/partner/materials',
+      isAvialable: true
+    },
+    {
+      label: 'Обучение',
+      icon: <TeamOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
+      href: '/partner/learn',
       isAvialable: true
     }
   ];

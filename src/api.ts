@@ -350,3 +350,68 @@ export const createArticle = async (data) => {
     return data.json();
   });
 };
+export const createPartner = async (data) => {
+  return await fetch(`${API_URL}/api/partner/createPartner`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const removePartner = async (data) => {
+  return await fetch(`${API_URL}/api/partner/deletePartner`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const editPartner = async (data) => {
+  return await fetch(`${API_URL}/api/partner/editPartner`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const getPartnerStatistic = async (data) => {
+  return await fetch(`${API_URL}/api/partner/getStats`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
+export const partnerLogin = async (data) => {
+  return await fetch(`${API_URL}/api/partner/login`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
