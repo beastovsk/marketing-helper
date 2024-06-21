@@ -13,6 +13,7 @@ import {useEffect, useState} from 'react';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 import {formatProductPrice} from '@/src/helpers/hooks';
+import {CheckOutlined, InfoCircleOutlined} from '@ant-design/icons';
 
 export const ChangeSubscriptionModal = () => {
   const [form] = Form.useForm();
@@ -21,6 +22,7 @@ export const ChangeSubscriptionModal = () => {
   const {subscriptionInfo} = useStore();
   const {mutate, isLoading} = useMutation(UpdateSubscription);
   const backUrl = subscriptionInfo?.subscriptionPlan === null ? '/campaign' : '/dashboard/settings';
+  const [isPromoActive, setPromoActive] = useState(false);
 
   const onFinish = (value) => {
     mutate(value, {
@@ -43,18 +45,28 @@ export const ChangeSubscriptionModal = () => {
     });
   };
 
+  useEffect(() => {
+    if (!isPromoActive) return;
+    customNotification(
+      'success',
+      'top',
+      'Промокод применен',
+      'Измененые цены смотрите при наведении курсора на информацию о плане'
+    );
+  }, [isPromoActive]);
+
   const options = [
     {
       title: 'Базовый',
       value: 'basic',
-      price: 2100,
+      price: isPromoActive ? 500 : 2100,
       description: 'Полный доступ к платформе',
       disabled: subscriptionInfo?.subscriptionPlan === 'basic' || subscriptionInfo?.subscriptionPlan === 'advanced'
     },
     {
       title: 'Продвинутый',
       value: 'advanced',
-      price: 3000,
+      price: isPromoActive ? 1000 : 3000,
       description: 'Полный доступ к платформе и 24/7 личный ассистент',
       disabled: subscriptionInfo?.subscriptionPlan === 'advanced'
     }
@@ -75,18 +87,19 @@ export const ChangeSubscriptionModal = () => {
         <Radio.Group>
           <Space direction='vertical'>
             {options.map(({description, price, title, value, disabled}) => (
-              <Tooltip
-                title={
-                  <div>
-                    <p>{description}</p>
-                    <span>{formatProductPrice(price)}</span>
-                  </div>
-                }
-              >
-                <Radio value={value} className='w-full' disabled={disabled}>
-                  {title}
-                </Radio>
-              </Tooltip>
+              <Radio value={value} className='w-full' disabled={disabled}>
+                {title}{' '}
+                <Tooltip
+                  title={
+                    <div>
+                      <p>{description}</p>
+                      <span>{formatProductPrice(price)}</span>
+                    </div>
+                  }
+                >
+                  <InfoCircleOutlined />
+                </Tooltip>
+              </Radio>
             ))}
           </Space>
         </Radio.Group>
@@ -120,6 +133,12 @@ export const ChangeSubscriptionModal = () => {
           </Form.Item>
         </Space>
       ) : null}
+      <Form.Item name='promo' className='w-full px-5' label='Промокод (не обязательно)'>
+        <Input
+          onChange={(e) => setPromoActive(e.target.value === 'START' ? true : false)}
+          addonAfter={isPromoActive ? <CheckOutlined /> : null}
+        />
+      </Form.Item>
       <div className='flex flex-col px-5 md:w-3/4 md:m-auto'>
         <Link href={backUrl} className='w-full'>
           <Btn primary className='mt-2 flex w-full justify-center m-auto'>
