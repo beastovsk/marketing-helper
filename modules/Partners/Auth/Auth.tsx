@@ -11,13 +11,13 @@ import {useMutation} from 'react-query';
 import s from './Auth.module.scss';
 
 import {animated, useInView} from '@react-spring/web';
-import {LoginRequest} from '@/src/api';
+import {LoginRequest, partnerLogin} from '@/src/api';
 import {Logo} from '@/components/UI/Logo/Logo';
 
 interface AuthProps {}
 
 export const Auth: FC<AuthProps> = () => {
-  const {mutate, isLoading} = useMutation(LoginRequest);
+  const {mutate, isLoading} = useMutation(partnerLogin);
   const [ref, springs] = useInView(
     () => ({
       from: {opacity: 0.7, scale: 0.95},
@@ -31,11 +31,11 @@ export const Auth: FC<AuthProps> = () => {
   const onFinish = async (value) => {
     mutate(value, {
       onSuccess: (data) => {
-        localStorage.setItem('email', value.email);
+        localStorage.setItem('partnerLogin', value.login);
         if (!data?.message) return;
         if (data?.token) {
           const {token} = data;
-          setCookie('token', token);
+          setCookie('partnerToken', token);
           router.push('/partner');
         }
         customNotification('info', 'top', 'Информация', data?.message);

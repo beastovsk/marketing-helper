@@ -8,12 +8,13 @@ import {customNotification} from '@/src/helpers/customNotification';
 import s from './ChangeSubscription.module.scss';
 
 import {useStore} from '@/src/store';
-import {ChangeCampaign, UpdateSubscription} from '@/src/api';
-import {useEffect, useState} from 'react';
+import {ChangeCampaign, UpdateSubscription, checkPromo} from '@/src/api';
+import {useEffect, useState, useCallback} from 'react';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 import {formatProductPrice} from '@/src/helpers/hooks';
 import {CheckOutlined, InfoCircleOutlined} from '@ant-design/icons';
+import debounce from 'lodash/debounce';
 
 export const ChangeSubscriptionModal = () => {
   const [form] = Form.useForm();
@@ -21,6 +22,7 @@ export const ChangeSubscriptionModal = () => {
   const [payment, setPayment] = useState('card');
   const {subscriptionInfo} = useStore();
   const {mutate, isLoading} = useMutation(UpdateSubscription);
+  const {mutate: check} = useMutation(checkPromo);
   const backUrl = subscriptionInfo?.subscriptionPlan === null ? '/campaign' : '/dashboard/settings';
   const [isPromoActive, setPromoActive] = useState(false);
 
@@ -29,6 +31,7 @@ export const ChangeSubscriptionModal = () => {
       onSuccess: (data) => {
         const {result} = data;
         localStorage.setItem('plan', value.subscriptionPlan);
+        localStorage.setItem('promo', value.promo);
         if (payment === 'crypto') {
           localStorage.setItem('uuid', result.uuid);
         } else {
@@ -55,18 +58,49 @@ export const ChangeSubscriptionModal = () => {
     );
   }, [isPromoActive]);
 
+  const handlePromoChange = useCallback(
+    debounce((promoCode) => {
+      if (promoCode) {
+        check(
+          {promo: promoCode},
+          {
+            onSuccess: (data) => {
+              if (data.exists) {
+                setPromoActive(true);
+              } else {
+                setPromoActive(false);
+                customNotification('error', 'top', 'Данного промокода не существует', 'Попробуйте другой');
+              }
+            },
+            onError: () => {
+              setPromoActive(false);
+            }
+          }
+        );
+      } else {
+        setPromoActive(false);
+      }
+    }, 300),
+    []
+  );
+
+  const onPromoInputChange = (e) => {
+    const promoCode = e.target.value;
+    handlePromoChange(promoCode);
+  };
+
   const options = [
     {
       title: 'Базовый',
       value: 'basic',
-      price: isPromoActive ? 500 : 2100,
+      price: isPromoActive ? 720 : 800,
       description: 'Полный доступ к платформе',
       disabled: subscriptionInfo?.subscriptionPlan === 'basic' || subscriptionInfo?.subscriptionPlan === 'advanced'
     },
     {
       title: 'Продвинутый',
       value: 'advanced',
-      price: isPromoActive ? 1000 : 3000,
+      price: isPromoActive ? 1170 : 1300,
       description: 'Полный доступ к платформе и 24/7 личный ассистент',
       disabled: subscriptionInfo?.subscriptionPlan === 'advanced'
     }
@@ -134,10 +168,7 @@ export const ChangeSubscriptionModal = () => {
         </Space>
       ) : null}
       <Form.Item name='promo' className='w-full px-5' label='Промокод (не обязательно)'>
-        <Input
-          onChange={(e) => setPromoActive(e.target.value === 'START' ? true : false)}
-          addonAfter={isPromoActive ? <CheckOutlined /> : null}
-        />
+        <Input onChange={onPromoInputChange} addonAfter={isPromoActive ? <CheckOutlined /> : null} />
       </Form.Item>
       <div className='flex flex-col px-5 md:w-3/4 md:m-auto'>
         <Link href={backUrl} className='w-full'>

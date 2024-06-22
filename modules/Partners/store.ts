@@ -1,17 +1,21 @@
+'use client';
+
 import {create} from 'zustand';
+import dayjs from 'dayjs';
 
 interface IStore {
-  openAdminConfirm: boolean;
-  statistic: null | Record<any, any>;
-
-  setOpenAdminConfirm: (param: boolean) => void;
-  setStatistic: (param: Record<string, string>) => void;
+  partnerStatistic: null | Record<any, any>;
+  statisticDate: {startDate: string; endDate: string};
+  setPartnerStatistic: (param: Record<string, string>) => void;
+  setStatisticDate: (startDate: string, endDate: string) => void;
 }
 
-export const useStore = create<IStore>()((set) => ({
-  openAdminConfirm: false,
-  setOpenAdminConfirm: (value) => set(() => ({openAdminConfirm: value})),
+const startOfMonth = dayjs().startOf('month').format('YYYY-MM-DD');
+const endOfMonth = dayjs().endOf('month').format('YYYY-MM-DD');
 
-  statistic: null,
-  setStatistic: (value) => set(() => ({statistic: value}))
+export const useStore = create<IStore>()((set) => ({
+  partnerStatistic: null,
+  statisticDate: {startDate: startOfMonth, endDate: endOfMonth},
+  setPartnerStatistic: (value) => set(() => ({partnerStatistic: value})),
+  setStatisticDate: (startDate, endDate) => set(() => ({statisticDate: {startDate, endDate}}))
 }));

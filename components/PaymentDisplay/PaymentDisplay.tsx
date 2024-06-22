@@ -25,14 +25,19 @@ export const PaymentDisplay = () => {
       const uuid = localStorage.getItem('uuid');
       const plan = localStorage.getItem('plan');
       const payment = localStorage.getItem('paymentType');
+      const promo = localStorage.getItem('promo');
       setStatus('success');
 
       confirmPayment(
-        {uuid, plan, payment},
+        {uuid, plan, payment, promo},
         {
           onSuccess: (data) => {
             if (data.status === 'paid' || data.status === 'succeeded') {
               getData();
+              localStorage.removeItem('uuid');
+              localStorage.removeItem('paymentType');
+              localStorage.removeItem('plan');
+              localStorage.removeItem('promo');
             }
             if (data?.paid === false) {
               setStatus('failed');
@@ -48,7 +53,7 @@ export const PaymentDisplay = () => {
   }, []);
 
   if (isLoading) {
-    <Loading />;
+    return <Loading />;
   }
 
   return (

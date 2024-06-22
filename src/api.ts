@@ -1,7 +1,7 @@
 import {deleteCookie, getCookie} from 'cookies-next';
 
-// const API_URL = 'http://localhost:3005';
-const API_URL = 'https://marketing-helper-server.onrender.com';
+const API_URL = 'http://localhost:3005';
+// const API_URL = 'https://marketing-helper-server.onrender.com';
 export const LoginRequest = async (data) => {
   return await fetch(`${API_URL}/api/auth/login`, {
     headers: {
@@ -224,6 +224,20 @@ export const confirmSubscription = async (data) => {
     return data.json();
   });
 };
+export const checkPromo = async (data) => {
+  return await fetch(`${API_URL}/api/user/checkPromoCode`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((data) => {
+    if (!data.ok) return;
+    return data.json();
+  });
+};
 export const sendMessage = async (question) => {
   return await fetch(`${API_URL}/api/page/sendMessage`, {
     headers: {
@@ -390,13 +404,16 @@ export const editPartner = async (data) => {
   });
 };
 export const getPartnerStatistic = async (data) => {
-  return await fetch(`${API_URL}/api/partner/getStats`, {
+  const {startDate, endDate} = data;
+  const queryString = new URLSearchParams({startDate, endDate}).toString();
+
+  return await fetch(`${API_URL}/api/partner/getStats?${queryString}`, {
     headers: {
+      Authorization: `Bearer ${getCookie('partnerToken')}`,
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    method: 'POST',
-    body: JSON.stringify(data)
+    method: 'GET'
   }).then((data) => {
     if (!data.ok) return;
     return data.json();
