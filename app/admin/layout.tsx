@@ -4,7 +4,7 @@ import {Sidebar} from '@/modules/Admin/Sidebar/Sidebar';
 import '@/src/styles/global.scss';
 import React from 'react';
 
-export default async function RootLayout({data, children}: {data: any; children: React.ReactNode}) {
+export default async function RootLayout({ children}: {children: React.ReactNode}) {
   return (
     <div className='flex h-full'>
       <Sidebar />
