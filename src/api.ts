@@ -467,7 +467,7 @@ export const deleteWithdrawal = async (id) => {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    method: 'DELETE'
+    method: 'POST'
   }).then((response) => {
     if (!response.ok) throw new Error('Ошибка при удалении вывода средств');
     return response.json();
