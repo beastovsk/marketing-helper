@@ -25,10 +25,10 @@ export const Partners = () => {
         onSuccess: (data) => {
           if (data?.message) {
             customNotification('success', 'top', 'Успешно', data?.message);
-            setOpen(false);
-            form.resetFields();
-            setStatistic({...statistic, partners: data.partners});
           }
+          setOpen(false);
+          form.resetFields();
+          setStatistic({...statistic, partners: data.partners});
         }
       }
     );

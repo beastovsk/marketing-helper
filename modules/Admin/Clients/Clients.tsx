@@ -26,10 +26,10 @@ export const Clients = () => {
         onSuccess: (data) => {
           if (data?.message) {
             customNotification('success', 'top', 'Успешно', data?.message);
-            setOpen(false);
-            form.resetFields();
-            setStatistic({...statistic, users: data.users});
           }
+          setOpen(false);
+          form.resetFields();
+          setStatistic({...statistic, users: data.users});
         }
       }
     );
