@@ -8,6 +8,7 @@ import {getPartnerStatistic, createWithdrawal, getWithdrawalsById} from '@/src/a
 import Btn from '@/components/UI/Btn/Btn';
 import dayjs from 'dayjs';
 import {customNotification} from '@/src/helpers/customNotification';
+import {deleteCookie} from 'cookies-next';
 
 const {TabPane} = Tabs;
 
@@ -27,6 +28,9 @@ export const Main = () => {
       }),
     {
       onSuccess: (data) => {
+        if (data?.message === 'Пользователь не найден') {
+          deleteCookie('partnerToken');
+        }
         setPartnerStatistic(data);
       }
     }
@@ -194,7 +198,7 @@ export const Main = () => {
             <Table
               columns={operationsColumns}
               dataSource={
-                partnerStatistic?.operations.length
+                partnerStatistic?.operations && partnerStatistic?.operations.length
                   ? partnerStatistic?.operations
                       .map((item) => JSON.parse(item))
                       .map((item) => ({...item, date: dayjs(item.date).format('DD-MM-YYYY')}))
@@ -206,7 +210,7 @@ export const Main = () => {
           <TabPane tab='История выводов' key='2'>
             <Table
               columns={withdrawalsColumns}
-              dataSource={withdrawals?.result.length ? withdrawals.result : []}
+              dataSource={withdrawals?.result && withdrawals?.result.length ? withdrawals.result : []}
               rowKey='id'
             />
           </TabPane>
