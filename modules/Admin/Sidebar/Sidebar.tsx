@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  DollarOutlined,
   FileTextOutlined,
   GlobalOutlined,
   HomeOutlined,
@@ -41,6 +42,12 @@ export const Sidebar: FC<SidebarProps> = () => {
       label: 'Партнеры',
       icon: <GlobalOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
       href: '/admin/partners',
+      isAvialable: true
+    },
+    {
+      label: 'Заявки на вывод',
+      icon: <DollarOutlined className='w-full justify-center text-2xl cursor-pointer' color='#111' />,
+      href: '/admin/withdrawals',
       isAvialable: true
     },
     {

@@ -432,3 +432,68 @@ export const partnerLogin = async (data) => {
     return data.json();
   });
 };
+export const createWithdrawal = async (data) => {
+  return await fetch(`${API_URL}/api/partner/createWithdrawal`, {
+    headers: {
+      Authorization: `Bearer ${getCookie('partnerToken')}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((response) => {
+    if (!response.ok) throw new Error('Ошибка при создании вывода средств');
+    return response.json();
+  });
+};
+
+export const editWithdrawal = async (data) => {
+  return await fetch(`${API_URL}/api/partner/editWithdrawal?id=${data.id}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then((response) => {
+    if (!response.ok) throw new Error('Ошибка при редактировании вывода средств');
+    return response.json();
+  });
+};
+
+export const deleteWithdrawal = async (id) => {
+  return await fetch(`${API_URL}/api/partner/deleteWithdrawal?id=${id}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'DELETE'
+  }).then((response) => {
+    if (!response.ok) throw new Error('Ошибка при удалении вывода средств');
+    return response.json();
+  });
+};
+
+export const getAllWithdrawals = async () => {
+  return await fetch(`${API_URL}/api/partner/getAllWithdrawals`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => {
+    if (!response.ok) throw new Error('Ошибка при получении записей о выводах средств');
+    return response.json();
+  });
+};
+
+export const getWithdrawalsById = async (partnerId) => {
+  return await fetch(`${API_URL}/api/partner/getWithdrawalsById?partnerId=${partnerId}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => {
+    if (!response.ok) throw new Error('Ошибка при получении записей о выводах средств');
+    return response.json();
+  });
+};
