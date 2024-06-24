@@ -9,6 +9,7 @@ import material2 from '../../../public/image/material2.jpg';
 import material3 from '../../../public/image/material3.jpg';
 import Image from 'next/image';
 import {useStore} from '../store';
+import Link from 'next/link';
 
 const {Panel} = Collapse;
 
@@ -18,15 +19,18 @@ const Materials = () => {
   const images = [
     {
       imageUrl: material1,
-      altText: 'Изображение 1'
+      altText: 'Изображение 1',
+      link: 'https://ibb.co/hK38fT7'
     },
     {
       imageUrl: material2,
-      altText: 'Изображение 2'
+      altText: 'Изображение 2',
+      link: 'https://ibb.co/ysjg8Wx'
     },
     {
       imageUrl: material3,
-      altText: 'Изображение 2'
+      altText: 'Изображение 3',
+      link: 'https://ibb.co/2qDsGFD'
     }
     // Добавьте другие изображения по аналогии
   ];
@@ -131,9 +135,9 @@ const Materials = () => {
       {/* Слайдер изображений */}
       <Carousel className='mb-4 pb-10 bg-gray-300'>
         {images.map((image, index) => (
-          <div key={index}>
+          <Link target='_blank' href={image.link} key={index}>
             <Image src={image.imageUrl} alt={image.altText} className='w-full h-auto' />
-          </div>
+          </Link>
         ))}
       </Carousel>
 
