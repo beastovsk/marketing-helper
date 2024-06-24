@@ -180,16 +180,16 @@ export const Main = () => {
         </p>
       </div>
 
+      <div className='box mb-5'>
+        <h3>Количество рефералов</h3>
+        <p className='text-xl mt-3'>{partnerStatistic?.refsCounter}</p>
+      </div>
+
       <div className='flex justify-between items-center mt-10 md:flex-col md:items-start md:mb-5'>
         <div className='mb-5'>
           Статистика за {statisticDate.startDate} - {statisticDate.endDate}
         </div>
       </div>
-      {/* 
-      <div className='box mb-5'>
-        <h3>Количество рефералов</h3>
-        <p className='text-xl mt-3'>{partnerStatistic?.refsCounter}</p>
-      </div> */}
 
       <div className='box'>
         <h3 className='mb-3'>История операций</h3>
