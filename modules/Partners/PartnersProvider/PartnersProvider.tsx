@@ -6,6 +6,7 @@ import {useEffect, useState} from 'react';
 import {useStore} from '../store';
 import {useQuery} from 'react-query';
 import {getPartnerStatistic} from '@/src/api';
+import Loading from '@/app/loading';
 
 export const PartnersProvider = ({children}) => {
   const router = useRouter();
@@ -37,7 +38,7 @@ export const PartnersProvider = ({children}) => {
   }, [data, setPartnerStatistic]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (error) {
