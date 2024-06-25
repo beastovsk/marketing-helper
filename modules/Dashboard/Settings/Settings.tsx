@@ -24,6 +24,7 @@ export const Settings = () => {
           </Link>
         </h3>
         <div className='flex flex-col text-sm p-3 border-b'>
+          <span>Название: {campaign?.name}</span>
           <span>Ниша: {campaign?.niche}</span>
           <span>Продукт: {campaign?.product}</span>
           <span className='flex gap-2'>
