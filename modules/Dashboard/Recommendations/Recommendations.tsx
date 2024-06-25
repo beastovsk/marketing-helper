@@ -70,7 +70,7 @@ const Recommendations = () => {
             )}
           </div>
         </div>
-        <div className='box mt-10'>
+        {/* <div className='box mt-10'>
           <h3 className='text-xl mb-5'>Идеи для контентного маркетинга</h3>
 
           <h4 className='text-lg mb-2 font-bold'>Видео контент (YT, YT Shorts, TikTok, Reels):</h4>
@@ -108,7 +108,7 @@ const Recommendations = () => {
               <Skeleton active />
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     </SubscriptionBlocker>
   );
