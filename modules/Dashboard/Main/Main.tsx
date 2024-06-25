@@ -66,7 +66,7 @@ const Main = () => {
                 {description}
               </PreloadText>
               <PreloadText elementType='p' className='mt-5'>
-                <StatusText success={isGood}>{review}</StatusText>
+                <StatusText success={isGood}>{review !== 'review' ? review: "Нет данных (обновите кампанию в настройках)"}</StatusText>
               </PreloadText>
             </div>
           ))}

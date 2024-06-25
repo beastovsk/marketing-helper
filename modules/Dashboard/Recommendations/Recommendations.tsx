@@ -50,7 +50,6 @@ const Recommendations = () => {
             </div>
           ))}
         </div>
-
         <div className='box mt-10'>
           <h3 className='text-xl mb-5'>Предложения и рекомендации</h3>
 
@@ -62,7 +61,46 @@ const Recommendations = () => {
                     {i + 1}. {label}
                   </PreloadText>
                   <PreloadText elementType='p' className='text-[#11111180]'>
-                    {review}
+                    {review !== 'review' ? review : 'Нет данных (обновите кампанию в настройках)'}{' '}
+                  </PreloadText>
+                </div>
+              ))
+            ) : (
+              <Skeleton active />
+            )}
+          </div>
+        </div>
+        <div className='box mt-10'>
+          <h3 className='text-xl mb-5'>Идеи для контентного маркетинга</h3>
+
+          <h4 className='text-lg mb-2 font-bold'>Видео контент (YT, YT Shorts, TikTok, Reels):</h4>
+          <div className='flex flex-col gap-3'>
+            {statistic.content.video.length ? (
+              statistic.content.video?.map(({label, description}, i) => (
+                <div>
+                  <PreloadText elementType='h4' className='text-lg'>
+                    {i + 1}. {label}
+                  </PreloadText>
+                  <PreloadText elementType='p' className='text-[#11111180]'>
+                    {description}
+                  </PreloadText>
+                </div>
+              ))
+            ) : (
+              <Skeleton active />
+            )}
+          </div>
+
+          <h4 className='text-lg mb-2 mt-5 font-bold'>Статьи (VC, Habr, Дзен):</h4>
+          <div className='flex flex-col gap-3'>
+            {statistic.content.articles.length ? (
+              statistic.content.articles?.map(({label, description}, i) => (
+                <div>
+                  <PreloadText elementType='h4' className='text-lg'>
+                    {i + 1}. {label}
+                  </PreloadText>
+                  <PreloadText elementType='p' className='text-[#11111180]'>
+                    {description}
                   </PreloadText>
                 </div>
               ))

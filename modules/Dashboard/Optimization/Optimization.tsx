@@ -28,7 +28,7 @@ const Optimization = () => {
                 <th>{channel}</th>
                 <th>{formatProductPrice(recommendBudget)}</th>
                 <th>{conversion}</th>
-                <th>{review}</th>
+                <th>{review !== 'review' ? review: "Нет данных (обновите кампанию в настройках)"}</th>
               </tr>
             ))}
           </tbody>

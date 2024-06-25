@@ -34,6 +34,14 @@ const Audacity = () => {
                   </PreloadText>
                 ))
               : null}
+            <h4 className='text-lg mt-3'>Советы для привлечения</h4>
+            {statistic
+              ? statistic?.audacity.attractingAdvices.map((label) => (
+                  <PreloadText elementType='p' className='text-md'>
+                    - {label}
+                  </PreloadText>
+                ))
+              : null}
           </div>
         </div>
 

@@ -44,7 +44,7 @@ const Budjet = () => {
                 {range ? `${range} ₽` : null}
               </PreloadText>
               <PreloadText elementType='p'>
-                <StatusText success={isGood}>{review}</StatusText>
+                <StatusText success={isGood}>{review !== 'review' ? review: "Нет данных (обновите кампанию в настройках)"}</StatusText>
               </PreloadText>
             </div>
           ))}
