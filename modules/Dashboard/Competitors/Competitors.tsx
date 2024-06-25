@@ -34,23 +34,29 @@ const Competitors = () => {
                       {description}
                     </PreloadText>
                     <h4 className='text-lg mt-3'>Сильные стороны:</h4>
-                    {positiveSides.map((label) => (
-                      <PreloadText elementType='h4' className='text-md'>
-                        <StatusText success={true}>{label}</StatusText>
-                      </PreloadText>
-                    ))}
+                    {positiveSides.length
+                      ? positiveSides.map((label) => (
+                          <PreloadText elementType='h4' className='text-md'>
+                            <StatusText success={true}>{label}</StatusText>
+                          </PreloadText>
+                        ))
+                      : null}
                     <h4 className='text-lg mt-3'>Слабые стороны:</h4>
-                    {negativeSides.map((label) => (
-                      <PreloadText elementType='h4' className='text-md'>
-                        <StatusText success={false}>{label}</StatusText>
-                      </PreloadText>
-                    ))}
+                    {negativeSides.length
+                      ? negativeSides.map((label) => (
+                          <PreloadText elementType='h4' className='text-md'>
+                            <StatusText success={false}>{label}</StatusText>
+                          </PreloadText>
+                        ))
+                      : null}
                     <h4 className='text-lg mt-3'>Как можно превзойти?</h4>
-                    {improvement.map((label) => (
-                      <PreloadText elementType='h4' className='text-md'>
-                        {label}
-                      </PreloadText>
-                    ))}
+                    {improvement.length
+                      ? improvement.map((label) => (
+                          <PreloadText elementType='h4' className='text-md'>
+                            {label}
+                          </PreloadText>
+                        ))
+                      : null}
                   </div>
                 ))
               : null}
