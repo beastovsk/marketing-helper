@@ -85,10 +85,17 @@ export const ChangeCampaignModal = () => {
       <h2 className='mb-3'>Заполните форму вашей кампании</h2>
       <div>
         <Form layout='vertical' onFinish={onFinish} initialValues={initialValues} requiredMark={false}>
+          <Form.Item label='Название' name='name' rules={[{required: true, message: 'Выберите название'}]}>
+            <Input />
+          </Form.Item>
           <Form.Item label='Ниша' name='niche' rules={[{required: true, message: 'Выберите название ниши'}]}>
             <Input />
           </Form.Item>
-          <Form.Item label='Продукт' name='product' rules={[{required: true, message: 'Выберите название продукта'}]}>
+          <Form.Item
+            label='Кратко о продукте'
+            name='product'
+            rules={[{required: true, message: 'Выберите название продукта'}]}
+          >
             <Input />
           </Form.Item>
           <Form.Item label='Дата периода кампании (необязательно)' name='date' validateTrigger={['onChange', 'onBlur']}>
