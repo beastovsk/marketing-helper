@@ -20,14 +20,14 @@ const Product = () => {
         <div className='mt-5'>
           <div className='box flex-grow'>
             <PreloadText elementType='h1' className='text-xl'>
-              {statistic?.productInfo.review !== 'review'
-                ? statistic?.productInfo.review
+              {statistic?.product.review !== 'review'
+                ? statistic?.product.review
                 : 'Нет данных (обновите кампанию в настройках)'}
             </PreloadText>
 
             <h4 className='text-lg mt-3'>Преимущества</h4>
             {statistic
-              ? statistic?.productInfo.features.map((label) => (
+              ? statistic?.product.features.map((label) => (
                   <PreloadText elementType='p' className='text-md'>
                     - {label}
                   </PreloadText>
@@ -36,7 +36,7 @@ const Product = () => {
 
             <h4 className='text-lg mt-3'>Потенциальные проблемы</h4>
             {statistic
-              ? statistic?.productInfo.problems.map((label) => (
+              ? statistic?.product.problems.map((label) => (
                   <PreloadText elementType='p' className='text-md'>
                     - {label}
                   </PreloadText>
