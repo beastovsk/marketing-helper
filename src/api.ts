@@ -6,9 +6,7 @@ export const LoginRequest = async (data) => {
   return await fetch(`${API_URL}/api/auth/login`, {
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify(data)
@@ -22,9 +20,7 @@ export const RegRequest = async (data) => {
   return await fetch(`${API_URL}/api/auth/register`, {
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify(data)
@@ -38,9 +34,7 @@ export const ConfirmEmail = async (args: {confirmToken: string}) => {
   return await fetch(`${API_URL}/api/auth/confirmEmail`, {
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify(args)
@@ -54,9 +48,7 @@ export const SendResetCode = async (args: {email: string}) => {
   return await fetch(`${API_URL}/api/auth/sendResetCode`, {
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify(args)
@@ -70,9 +62,7 @@ export const ResetPassword = async (args: {password: string; confirmToken: strin
   return await fetch(`${API_URL}/api/auth/resetPassword`, {
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify(args)
@@ -87,9 +77,7 @@ export const ChangeEmail = async (args: {currentEmail: string; newEmail: string;
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${getCookie('token')}`,
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      Authorization: `Bearer ${getCookie('token')}`
     },
     method: 'POST',
     body: JSON.stringify(args)
@@ -104,9 +92,7 @@ export const ChangePassword = async (args: {password: string; currentPassword: s
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${getCookie('token')}`,
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      Authorization: `Bearer ${getCookie('token')}`
     },
     method: 'POST',
     body: JSON.stringify(args)
@@ -121,9 +107,7 @@ export const GetUser = async () => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${getCookie('token')}`,
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      Authorization: `Bearer ${getCookie('token')}`
     },
     method: 'GET'
   }).then((data) => {
@@ -141,9 +125,7 @@ export const ChangeCampaign = async (args) => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${getCookie('token')}`,
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      Authorization: `Bearer ${getCookie('token')}`
     },
     method: 'POST',
     body: JSON.stringify(args)
@@ -158,9 +140,7 @@ export const StatisticCampaign = async () => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${getCookie('token')}`,
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      Authorization: `Bearer ${getCookie('token')}`
     }
   }).then((data) => {
     if (!data.ok) return;
@@ -172,9 +152,7 @@ export const SendSupportMessage = async (body) => {
   return await fetch(`${API_URL}/api/page/sendSupportMessage`, {
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': `${API_URL}`,
-      'Access-Control-Allow-Headers': `${API_URL}`
+      'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify(body)
